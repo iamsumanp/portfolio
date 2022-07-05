@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 const myLogo = require("../assets/logo.png");
 export const NavBar = () => {
+  const [active, setActive] = useState(false);
+
+  const burgerClick = () => {
+    setActive(!active);
+  };
+
   return (
-    <nav>
+    <nav className={active ? "navBar" : "navBar mb"}>
       <HashLink to="#heroSection" className="linkHash" smooth>
         <img src={myLogo} alt="SP" className="logoImg" />
       </HashLink>
 
-      <ul className="navUl">
+      <ul className={active ? "navUl" : "navUl nav-active"}>
         <li className="navLinks">
           <HashLink to="#aboutMe" className="linkHash" smooth>
             About me
@@ -26,6 +32,11 @@ export const NavBar = () => {
         </li>
         <li className="navLinks resume">Resume</li>
       </ul>
+      <div className="burgerMenu" onClick={() => burgerClick()}>
+        <div className={active ? "line1" : "line1 toggle"}></div>
+        <div className={active ? "line2" : "line2 toggle2"}></div>
+        <div className={active ? "line3" : "line3 toggle3"}></div>
+      </div>
     </nav>
   );
 };

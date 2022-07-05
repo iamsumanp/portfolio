@@ -1,7 +1,3 @@
-// $medium: 1100px;
-// $mobile: 900px;
-// $xmobile: 800px;
-
 @mixin respond($breakpoint) {
   @if ($breakpoint == large) {
     @media (max-width: 1100px) {
@@ -34,32 +30,80 @@ body {
   padding: 0;
   //   list-style: none;
   //   background-color: black;
+  @include respond(medium) {
+    overflow-x: hidden;
+  }
 }
 
-nav {
+.navBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // align-items: center;
+  align-items: center;
   min-height: 5rem;
   // margin: 80% auto;
   font-weight: bolder;
   overflow-x: hidden;
 
-  @include respond(medium) {
+  @include respond(large) {
     margin-bottom: 5rem;
   }
   padding: 0.2% 8%;
   .logoImg {
     height: 25px;
-    margin-top: 15px;
+    // margin-top: 10px;
   }
 
   .navUl {
     list-style: none;
     display: flex;
     flex-direction: row;
+
+    @include respond(medium) {
+      position: absolute;
+      right: 0;
+      top: 8vh;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+      flex-direction: column;
+      width: 100%;
+      // align-items: center;
+      justify-content: space-evenly;
+      transform: translateX(100%);
+      transition: transform 0.4s ease-in;
+    }
   }
+  .nav-active {
+    transform: translateX(0%);
+  }
+  .burgerMenu {
+    display: none;
+
+    @include respond(medium) {
+      display: block;
+      cursor: pointer;
+    }
+
+    .toggle {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle2 {
+      opacity: 0;
+    }
+
+    .toggle3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+  .burgerMenu div {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transition: transform 0.4s ease;
+
+    margin: 5px;
+  }
+
   .navLinks {
     padding: 0 40px;
     cursor: pointer;
@@ -80,7 +124,9 @@ nav {
     }
   }
 }
-
+// .mb {
+//   margin-bottom: 100vh;
+// }
 .heroSection {
   //   background-color: aqua;
   overflow-x: hidden;
@@ -157,7 +203,7 @@ nav {
   //   align-items: center;
   padding: 7% 2% 10% 5%;
   @include respond(large) {
-    padding: 7rem 2% 10% 5%;
+    padding: 7rem 2% 10% 1.5%;
   }
   //   flex-grow: 1;
   //   flex-basis: 1;
@@ -284,7 +330,7 @@ nav {
   padding: 5% 2% 0 5%;
   // height: 40rem;
   @include respond(large) {
-    padding: 7rem 2% 10% 5%;
+    padding: 7rem 2% 10% 1.5%;
   }
   display: flex;
   flex-direction: column;
@@ -362,7 +408,7 @@ nav {
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 7.5rem;
   // background-color: aqua;x
   .nameLabelLine2 {
     margin: 2rem 0;
@@ -418,7 +464,7 @@ nav {
   display: flex;
   flex-direction: column;
   @include respond(large) {
-    padding: 5rem 2% 10% 5%;
+    padding: 5rem 2% 10% 1.5%;
   }
   .formContainer {
     margin-top: 2rem;
@@ -508,7 +554,7 @@ nav {
   width: 80%;
   margin: auto;
   // padding: 3rem 0 4rem 0;
-  padding: 3% 2% 4% 5%;
+  padding: 3% 2% 4% 1.5%;
 
   .footerContainer {
     display: flex;

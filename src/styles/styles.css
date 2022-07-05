@@ -11,43 +11,90 @@ body {
   margin: 0;
   padding: 0;
 }
+@media (max-width: 900px) {
+  body {
+    overflow-x: hidden;
+  }
+}
 
-nav {
+.navBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   min-height: 5rem;
   font-weight: bolder;
   overflow-x: hidden;
   padding: 0.2% 8%;
 }
-@media (max-width: 900px) {
-  nav {
+@media (max-width: 1100px) {
+  .navBar {
     margin-bottom: 5rem;
   }
 }
-nav .logoImg {
+.navBar .logoImg {
   height: 25px;
-  margin-top: 15px;
 }
-nav .navUl {
+.navBar .navUl {
   list-style: none;
   display: flex;
   flex-direction: row;
 }
-nav .navLinks {
+@media (max-width: 900px) {
+  .navBar .navUl {
+    position: absolute;
+    right: 0;
+    top: 8vh;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in;
+  }
+}
+.navBar .nav-active {
+  transform: translateX(0%);
+}
+.navBar .burgerMenu {
+  display: none;
+}
+@media (max-width: 900px) {
+  .navBar .burgerMenu {
+    display: block;
+    cursor: pointer;
+  }
+}
+.navBar .burgerMenu .toggle {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.navBar .burgerMenu .toggle2 {
+  opacity: 0;
+}
+.navBar .burgerMenu .toggle3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+.navBar .burgerMenu div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  transition: transform 0.4s ease;
+  margin: 5px;
+}
+.navBar .navLinks {
   padding: 0 40px;
   cursor: pointer;
   align-self: center;
   text-decoration: none;
 }
-nav .navLinks.resume {
+.navBar .navLinks.resume {
   border: solid 1px var(--main-purple);
   color: var(--main-purple);
   padding: 9px 25px;
   border-radius: 5px;
 }
-nav .navLinks .linkHash {
+.navBar .navLinks .linkHash {
   text-decoration: none;
   color: black;
 }
@@ -125,7 +172,7 @@ nav .navLinks .linkHash {
 }
 @media (max-width: 1100px) {
   .aboutMeSection {
-    padding: 7rem 2% 10% 5%;
+    padding: 7rem 2% 10% 1.5%;
   }
 }
 .aboutMeSection .contentAndImage {
@@ -261,7 +308,7 @@ nav .navLinks .linkHash {
 }
 @media (max-width: 1100px) {
   .projectsSection {
-    padding: 7rem 2% 10% 5%;
+    padding: 7rem 2% 10% 1.5%;
   }
 }
 .projectsSection .Project1Container {
@@ -341,7 +388,7 @@ nav .navLinks .linkHash {
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 7.5rem;
 }
 .Project2Container .nameLabelLine2 {
   margin: 2rem 0;
@@ -403,7 +450,7 @@ nav .navLinks .linkHash {
 }
 @media (max-width: 1100px) {
   .ContactSection {
-    padding: 5rem 2% 10% 5%;
+    padding: 5rem 2% 10% 1.5%;
   }
 }
 .ContactSection .formContainer {
@@ -491,7 +538,7 @@ nav .navLinks .linkHash {
 .footerSection {
   width: 80%;
   margin: auto;
-  padding: 3% 2% 4% 5%;
+  padding: 3% 2% 4% 1.5%;
 }
 .footerSection .footerContainer {
   display: flex;
