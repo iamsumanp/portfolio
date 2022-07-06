@@ -43,11 +43,10 @@ body {
   min-height: 5rem;
   // margin: 80% auto;
   font-weight: bolder;
-  // overflow-x: hidden;
+  overflow-x: hidden;
 
   @include respond(large) {
     margin-bottom: 5rem;
-    overflow-x: hidden;
   }
   padding: 0.2% 8%;
   .logoImg {
@@ -462,7 +461,6 @@ body {
     border-radius: 5px;
     // margin-left: auto;
     margin-right: auto;
-    padding-right: 2rem;
     @include respond(large) {
       margin-right: 0;
       align-self: center;

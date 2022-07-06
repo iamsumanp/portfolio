@@ -43,11 +43,10 @@ body {
   min-height: 5rem;
   // margin: 80% auto;
   font-weight: bolder;
-  // overflow-x: hidden;
+  overflow-x: hidden;
 
   @include respond(large) {
     margin-bottom: 5rem;
-    overflow-x: hidden;
   }
   padding: 0.2% 8%;
   .logoImg {
@@ -255,17 +254,13 @@ body {
       align-self: center;
       margin-bottom: 2rem;
     }
-    @include respond(small) {
-      height: 300px;
-      width: 240px;
-    }
     .imgProfile {
       height: 350px;
       position: absolute;
       right: 8px;
       top: -11px;
       border-radius: 5px;
-      @include respond(small) {
+      @include respond(large) {
         height: 300px;
       }
     }
@@ -462,7 +457,6 @@ body {
     border-radius: 5px;
     // margin-left: auto;
     margin-right: auto;
-    padding-right: 2rem;
     @include respond(large) {
       margin-right: 0;
       align-self: center;

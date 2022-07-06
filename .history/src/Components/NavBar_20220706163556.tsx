@@ -11,26 +11,21 @@ export const NavBar = () => {
   return (
     <nav className="navBar">
       <HashLink to="#heroSection" className="linkHash" smooth>
-        <img
-          src={myLogo}
-          alt="SP"
-          className="logoImg"
-          onClick={active ? burgerClick : undefined}
-        />
+        <img src={myLogo} alt="SP" className="logoImg" />
       </HashLink>
 
       <ul className={active ? "navUl nav-active" : "navUl"}>
-        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+        <li className="navLinks">
           <HashLink to="#aboutMe" className="linkHash" smooth>
             About me
           </HashLink>
         </li>
-        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+        <li className="navLinks">
           <HashLink to="#projectSection" className="linkHash" smooth>
             Projects
           </HashLink>
         </li>
-        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+        <li className="navLinks">
           <HashLink to="#contact" className="linkHash" smooth>
             Contact
           </HashLink>
@@ -38,9 +33,9 @@ export const NavBar = () => {
         <li className="navLinks resume">Resume</li>
       </ul>
       <div className="burgerMenu" onClick={() => burgerClick()}>
-        <div className={active ? "line1 toggle" : "line1"}></div>
-        <div className={active ? "line2 toggle2" : "line2"}></div>
-        <div className={active ? "line3 toggle3" : "line3"}></div>
+        <div className={active ? "line1" : "line1 toggle"}></div>
+        <div className={active ? "line2" : "line2 toggle2"}></div>
+        <div className={active ? "line3" : "line3 toggle3"}></div>
       </div>
     </nav>
   );

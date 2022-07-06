@@ -10,14 +10,20 @@ export const NavBar = () => {
 
   return (
     <nav className="navBar">
-      <HashLink to="#heroSection" className="linkHash" smooth>
-        <img
-          src={myLogo}
-          alt="SP"
-          className="logoImg"
-          onClick={active ? burgerClick : undefined}
-        />
-      </HashLink>
+      {active ? (
+        <HashLink to="#heroSection" className="linkHash" smooth>
+          <img
+            src={myLogo}
+            alt="SP"
+            className="logoImg"
+            onClick={burgerClick}
+          />
+        </HashLink>
+      ) : (
+        <HashLink to="#heroSection" className="linkHash" smooth>
+          <img src={myLogo} alt="SP" className="logoImg" />
+        </HashLink>
+      )}
 
       <ul className={active ? "navUl nav-active" : "navUl"}>
         <li className="navLinks" onClick={active ? burgerClick : undefined}>

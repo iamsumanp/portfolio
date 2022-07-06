@@ -11,12 +11,7 @@ export const NavBar = () => {
   return (
     <nav className="navBar">
       <HashLink to="#heroSection" className="linkHash" smooth>
-        <img
-          src={myLogo}
-          alt="SP"
-          className="logoImg"
-          onClick={active ? burgerClick : undefined}
-        />
+        <img src={myLogo} alt="SP" className="logoImg" />
       </HashLink>
 
       <ul className={active ? "navUl nav-active" : "navUl"}>

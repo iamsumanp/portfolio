@@ -10,27 +10,46 @@ export const NavBar = () => {
 
   return (
     <nav className="navBar">
-      <HashLink to="#heroSection" className="linkHash" smooth>
-        <img
-          src={myLogo}
-          alt="SP"
-          className="logoImg"
-          onClick={active ? burgerClick : undefined}
-        />
-      </HashLink>
+      {active ? (
+        <HashLink to="#heroSection" className="linkHash" smooth>
+          <img
+            src={myLogo}
+            alt="SP"
+            className="logoImg"
+            onClick={burgerClick}
+          />
+        </HashLink>
+      ) : (
+        <HashLink to="#heroSection" className="linkHash" smooth>
+          <img src={myLogo} alt="SP" className="logoImg" />
+        </HashLink>
+      )}
 
       <ul className={active ? "navUl nav-active" : "navUl"}>
-        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+        {/* {active ? (
+          <li className="navLinks" onClick={burgerClick}>
+            <HashLink to="#aboutMe" className="linkHash" smooth>
+              About me
+            </HashLink>
+          </li>
+        ) : (
+          <li className="navLinks">
+            <HashLink to="#aboutMe" className="linkHash" smooth>
+              About me
+            </HashLink>
+          </li>
+        )} */}
+        <li className="navLinks" onClick={burgerClick}>
           <HashLink to="#aboutMe" className="linkHash" smooth>
             About me
           </HashLink>
         </li>
-        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+        <li className="navLinks">
           <HashLink to="#projectSection" className="linkHash" smooth>
             Projects
           </HashLink>
         </li>
-        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+        <li className="navLinks">
           <HashLink to="#contact" className="linkHash" smooth>
             Contact
           </HashLink>
