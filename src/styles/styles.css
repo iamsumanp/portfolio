@@ -34,6 +34,7 @@ body {
 }
 .navBar .logoImg {
   height: 25px;
+  opacity: 1;
 }
 .navBar .navUl {
   list-style: none;
@@ -219,7 +220,7 @@ body {
   position: relative;
   height: 350px;
   width: 280px;
-  border: solid 2px black;
+  border: solid 2px #7f58f7;
   border-radius: 5px;
 }
 @media (max-width: 1100px) {
