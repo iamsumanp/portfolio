@@ -34,7 +34,6 @@ body {
 }
 .navBar .logoImg {
   height: 25px;
-  opacity: 1;
 }
 .navBar .navUl {
   list-style: none;
@@ -338,7 +337,8 @@ body {
     padding: 7rem 2% 10% 1.5%;
   }
 }
-.projectsSection .Project1Container {
+.projectsSection .Project1Container,
+.projectsSection .Project3Container {
   display: flex;
   flex-direction: column;
 }
