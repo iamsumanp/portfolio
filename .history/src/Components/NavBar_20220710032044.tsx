@@ -1,4 +1,4 @@
-import { gsap, Power3 } from "gsap";
+import { gsap } from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 const myLogo = require("../assets/logo.png");
@@ -11,8 +11,11 @@ export const NavBar = () => {
   const burgerClick = () => {
     setActive(!active);
   };
-  // let el = tl.current;
-  // el = gsap.timeline({ defaults: { duration: 1 } });
+  let el = tl.current;
+  el = gsap.timeline({ defaults: { duration: 1 } });
+  gsap.from(".logoImg", {
+    x: 100,
+  });
   useEffect(() => {
     // tl.current = gsap
     //   .timeline()
@@ -30,11 +33,8 @@ export const NavBar = () => {
     //   });
     // gsap.from(".logoImg", {
     //   x: 100,
-    //   duration: 1,
-    //   // opacity: 0,
-    //   ease: Power3.easeIn,
     // });
-  }, []);
+  });
 
   // useEffect(() => {
   //   tl.current = gsap.timeline();

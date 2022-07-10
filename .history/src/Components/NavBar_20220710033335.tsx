@@ -11,8 +11,8 @@ export const NavBar = () => {
   const burgerClick = () => {
     setActive(!active);
   };
-  // let el = tl.current;
-  // el = gsap.timeline({ defaults: { duration: 1 } });
+  let el = tl.current;
+  el = gsap.timeline({ defaults: { duration: 1 } });
   useEffect(() => {
     // tl.current = gsap
     //   .timeline()
@@ -28,12 +28,12 @@ export const NavBar = () => {
     //     duration: 0.7,
     //     stagger: 0.5,
     //   });
-    // gsap.from(".logoImg", {
-    //   x: 100,
-    //   duration: 1,
-    //   // opacity: 0,
-    //   ease: Power3.easeIn,
-    // });
+    gsap.from(".logoImg", {
+      x: 100,
+      duration: 1,
+      // opacity: 0,
+      ease: Power3.easeIn,
+    });
   }, []);
 
   // useEffect(() => {

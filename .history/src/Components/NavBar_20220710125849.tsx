@@ -11,8 +11,8 @@ export const NavBar = () => {
   const burgerClick = () => {
     setActive(!active);
   };
-  // let el = tl.current;
-  // el = gsap.timeline({ defaults: { duration: 1 } });
+  let el = tl.current;
+  el = gsap.timeline({ defaults: { duration: 1 } });
   useEffect(() => {
     // tl.current = gsap
     //   .timeline()
