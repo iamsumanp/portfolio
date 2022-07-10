@@ -219,8 +219,8 @@ export const Projects = () => {
               semi-digital card recharge procedure in KU Canteen Management
               System(University canteen). It consist of a webpage interface
               integrated with online payment system. With this, students can
-              recharge their university card with just their card number and
-              online payment account.
+              recharge their university card with just card number and online
+              payment account.
             </span>
             <div className="linksContainer">
               <a

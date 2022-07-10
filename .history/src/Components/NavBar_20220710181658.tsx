@@ -10,43 +10,13 @@ export const NavBar = () => {
 
   const q = gsap.utils.selector(navRef);
 
-  const tl0: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
-  // const tl10: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
+  const tl: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
 
-  // const imgRef = useRef(null);
+  const imgRef = useRef(null);
 
   const burgerClick = () => {
     setActive(!active);
   };
-
-  useEffect(() => {
-    // if (active === false) {
-    //   tl10.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
-    //     q(".navUl"),
-    //     {
-    //       y: 5,
-    //       opacity: 0,
-    //     },
-    //     {
-    //       y: 0,
-    //       opacity: 1,
-    //       stagger: {
-    //         each: 1,
-    //       },
-    //     }
-    //   );
-    // }
-
-    tl0.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
-      q(".logoImg"),
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-      }
-    );
-  });
 
   return (
     <nav className="navBar" ref={navRef}>
@@ -56,7 +26,7 @@ export const NavBar = () => {
           alt="SP"
           className="logoImg"
           onClick={active ? burgerClick : undefined}
-          // ref={imgRef}
+          ref={imgRef}
         />
       </HashLink>
 

@@ -20,23 +20,6 @@ export const NavBar = () => {
   };
 
   useEffect(() => {
-    // if (active === false) {
-    //   tl10.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
-    //     q(".navUl"),
-    //     {
-    //       y: 5,
-    //       opacity: 0,
-    //     },
-    //     {
-    //       y: 0,
-    //       opacity: 1,
-    //       stagger: {
-    //         each: 1,
-    //       },
-    //     }
-    //   );
-    // }
-
     tl0.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
       q(".logoImg"),
       {
@@ -44,6 +27,20 @@ export const NavBar = () => {
       },
       {
         opacity: 1,
+      }
+    );
+    tl10.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
+      q(".navUl"),
+      {
+        y: 5,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: {
+          each: 1,
+        },
       }
     );
   });

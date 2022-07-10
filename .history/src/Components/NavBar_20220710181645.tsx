@@ -10,43 +10,50 @@ export const NavBar = () => {
 
   const q = gsap.utils.selector(navRef);
 
-  const tl0: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
-  // const tl10: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
+  const tl: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
 
-  // const imgRef = useRef(null);
+  const imgRef = useRef(null);
 
   const burgerClick = () => {
     setActive(!active);
   };
+  // let el = tl.current;
+  // el = gsap.timeline({ defaults: { duration: 1 } });
+  // useEffect(() => {
+  //   tl.current = gsap
+  //     .timeline()
+  //     .fromTo(
+  //       q(".linkHash"),
+  //       {
+  //         // y: 20,
+  //         opacity: 0,
+  //         duration: 1,
+  //       },
+  //       {
+  //         // y: 0,
+  //         opacity: 1,
+  //         ease: "Power3.easeIn",
+  //       }
+  //     )
+  //     .fromTo(
+  //       q(".navUl"),
+  //       {
+  //         x: 50,
+  //         opacity: 0,
+  //         duration: 0.7,
+  //       },
+  //       {
+  //         x: 0,
+  //         opacity: 1,
+  //         // stagger: 1,
+  //       },
+  //       "-=1"
+  //     );
+  // }, [q]);
 
-  useEffect(() => {
-    // if (active === false) {
-    //   tl10.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
-    //     q(".navUl"),
-    //     {
-    //       y: 5,
-    //       opacity: 0,
-    //     },
-    //     {
-    //       y: 0,
-    //       opacity: 1,
-    //       stagger: {
-    //         each: 1,
-    //       },
-    //     }
-    //   );
-    // }
-
-    tl0.current = gsap.timeline({ defaults: { duration: 1 } }).fromTo(
-      q(".logoImg"),
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-      }
-    );
-  });
+  // useEffect(() => {
+  //   tl.current = gsap.timeline();
+  // }, [q]);
 
   return (
     <nav className="navBar" ref={navRef}>
@@ -56,7 +63,7 @@ export const NavBar = () => {
           alt="SP"
           className="logoImg"
           onClick={active ? burgerClick : undefined}
-          // ref={imgRef}
+          ref={imgRef}
         />
       </HashLink>
 

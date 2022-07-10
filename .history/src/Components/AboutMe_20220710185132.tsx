@@ -87,12 +87,12 @@ export const AboutMe = () => {
       <div className="contentAndImage">
         <div className="aboutMeContent">
           <span className="spanText">
-            Hello, My name is Suman Pokharel. I like to code things from
-            scratch, and enjoy bringing ideas to life in the browser. I am a
-            compuer science student currently enrolled in Kathmandu University .
-            My interest in Web Development started back in 2016 when I created
+            Hello, My name is Suman Pokharel . I like to code things from
+            scratch, and enjoy bringing ideas to life in the browser.I am a
+            compuer science student currently enrolled in Kathmandu University
+            .My interest in Web Development started back in 2016 when I created
             tables and words in HTML for the first time in browser. From there,
-            i have always tried to polish my web development skills.
+            i have tried to polish my web development skills
           </span>
         </div>
         <div className="imgContainer">

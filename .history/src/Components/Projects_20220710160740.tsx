@@ -98,9 +98,9 @@ export const Projects = () => {
           <div className="projContent">
             <span className="projectDiscription">
               Hirestation is an webapp for buying and selling services with
-              stripe as payment method. User can sell or buy any kind of
-              services(game development,web development,mobile app development)
-              in Hirestation.
+              stripe as payment method. This is an heroku deployed web app.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
             </span>
             <div className="linksContainer">
               <a
@@ -164,9 +164,10 @@ export const Projects = () => {
           />
           <div className="projContent">
             <span className="projectDiscription">
-              BaatCheeth is a web app where you can send messages, create
-              channels, communicate with people, etc.Full freedom is given to
-              the users(deleting messages,creating new channels)
+              Hirestation is an webapp for buying and selling services with
+              stripe as payment method. This is an heroku deployed web app.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
             </span>
             <div className="linksContainer">
               <a
@@ -215,12 +216,10 @@ export const Projects = () => {
         <div className="projectContentAndImage">
           <div className="projContent">
             <span className="projectDiscription">
-              Purlieu is an web app which automates and digitize this
-              semi-digital card recharge procedure in KU Canteen Management
-              System(University canteen). It consist of a webpage interface
-              integrated with online payment system. With this, students can
-              recharge their university card with just their card number and
-              online payment account.
+              Hirestation is an webapp for buying and selling services with
+              stripe as payment method. This is an heroku deployed web app.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
             </span>
             <div className="linksContainer">
               <a

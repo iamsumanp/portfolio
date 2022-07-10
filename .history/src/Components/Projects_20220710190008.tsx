@@ -216,11 +216,8 @@ export const Projects = () => {
           <div className="projContent">
             <span className="projectDiscription">
               Purlieu is an web app which automates and digitize this
-              semi-digital card recharge procedure in KU Canteen Management
-              System(University canteen). It consist of a webpage interface
-              integrated with online payment system. With this, students can
-              recharge their university card with just their card number and
-              online payment account.
+              semi-digital card recharge procedure in KU Canteen
+              Management(University canteen) System
             </span>
             <div className="linksContainer">
               <a

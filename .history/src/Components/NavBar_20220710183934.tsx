@@ -11,7 +11,7 @@ export const NavBar = () => {
   const q = gsap.utils.selector(navRef);
 
   const tl0: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
-  // const tl10: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
+  const tl10: gsap.TimelineVars | undefined = useRef(null); // gsap.TimelineVars | undefined
 
   // const imgRef = useRef(null);
 
