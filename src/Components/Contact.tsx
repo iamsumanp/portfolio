@@ -51,7 +51,8 @@ export const Contact = () => {
         },
         "-=1"
       );
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="ContactSection" id="contact" ref={contactRef}>
       <h2 className="h2textabout">Interested In working together?</h2>

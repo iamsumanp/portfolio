@@ -5,7 +5,7 @@ const myLogo = require("../assets/logo.png");
 
 export const NavBar = () => {
   const [active, setActive] = useState(false);
-
+  // const [darkMode, setDarkMode] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
   const q = gsap.utils.selector(navRef);
@@ -18,6 +18,9 @@ export const NavBar = () => {
   const burgerClick = () => {
     setActive(!active);
   };
+  // const darkModeClick = () => {
+  //   setDarkMode(!darkMode);
+  // };
 
   useEffect(() => {
     // if (active === false) {
@@ -46,7 +49,8 @@ export const NavBar = () => {
         opacity: 1,
       }
     );
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <nav className="navBar" ref={navRef}>
@@ -61,6 +65,9 @@ export const NavBar = () => {
       </HashLink>
 
       <ul className={active ? "navUl nav-active" : "navUl"}>
+        {/* <li className="navLinks" onClick={darkModeClick}>
+          dark mode
+        </li> */}
         <li className="navLinks" onClick={active ? burgerClick : undefined}>
           <HashLink to="#aboutMe" className="linkHash" smooth>
             About me
