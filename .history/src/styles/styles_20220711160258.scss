@@ -18,7 +18,7 @@
 
 :root {
   --main-purple: #3500d3;
-  --main-white: #ffffff;
+  --main-white: rgb(255, 255, 255);
   --main-black: #000000;
   --main-purple-secondary: #7a4eff;
 }
@@ -48,7 +48,7 @@ body {
   // position: sticky;
   // top: 0px;
   // z-index: 2;
-  background-color: var(--main-white);
+  background-color: aqua;
 
   @include respond(large) {
     margin-bottom: 5rem;
@@ -118,7 +118,7 @@ body {
     &.resume {
       border: solid 1px var(--main-purple);
       color: var(--main-purple);
-      padding: 9px 25px;
+      padding: 0px 25px;
       border-radius: 5px;
       margin-left: 1rem;
     }

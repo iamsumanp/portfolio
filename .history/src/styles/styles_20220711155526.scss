@@ -18,7 +18,7 @@
 
 :root {
   --main-purple: #3500d3;
-  --main-white: #ffffff;
+  --main-white: rgb(255, 255, 255);
   --main-black: #000000;
   --main-purple-secondary: #7a4eff;
 }
@@ -42,13 +42,9 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-height: 4rem;
+  min-height: 5rem;
   font-weight: bolder;
-  padding: 0.2% 12.5%;
-  // position: sticky;
-  // top: 0px;
-  // z-index: 2;
-  background-color: var(--main-white);
+  padding: 0.2% 12%;
 
   @include respond(large) {
     margin-bottom: 5rem;
