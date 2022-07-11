@@ -7,7 +7,9 @@ export const Footer = () => {
     <div className="footerSection">
       <div className="footerContainer">
         <div className="socialMediaAndQuote">
-          <span>Designed And Built By Suman Pokhrel</span>
+          <span style={{ height: "10px" }}>
+            Designed And Built By Suman Pokhrel
+          </span>
           <div className="socialMedia">
             <a
               href="https://www.linkedin.com/in/suman-pokharel-2a4b61206/"

@@ -1,8 +1,5 @@
 :root {
   --main-purple: #3500d3;
-  --main-white: rgb(255, 255, 255);
-  --main-black: #000000;
-  --main-purple-secondary: #7a4eff;
 }
 
 * {
@@ -27,13 +24,12 @@ body {
   align-items: center;
   min-height: 5rem;
   font-weight: bolder;
-  padding: 0.2% 14%;
+  padding: 0.2% 15%;
 }
 @media (max-width: 1100px) {
   .navBar {
     margin-bottom: 5rem;
     overflow-x: hidden;
-    padding: 0.2% 12%;
   }
 }
 .navBar .logoImg {
@@ -50,7 +46,7 @@ body {
     right: 0;
     top: 8vh;
     height: 100vh;
-    background-color: var(--main-white);
+    background-color: rgb(255, 255, 255);
     flex-direction: column;
     width: 100%;
     z-index: 1;
@@ -83,12 +79,12 @@ body {
 .navBar .burgerMenu div {
   width: 25px;
   height: 3px;
-  background-color: var(--main-black);
+  background-color: black;
   transition: transform 0.4s ease;
   margin: 5px;
 }
 .navBar .navLinks {
-  padding: 0 30px;
+  padding: 0 40px;
   cursor: pointer;
   align-self: center;
   text-decoration: none;
@@ -98,27 +94,20 @@ body {
   color: var(--main-purple);
   padding: 9px 25px;
   border-radius: 5px;
-  margin-left: 1rem;
 }
 .navBar .navLinks .linkHash {
   text-decoration: none;
   color: black;
 }
 
-.heroSection,
-.aboutMeSection,
-.projectsSection,
-.ContactSection {
-  width: 80%;
-  margin: auto;
-}
-
 .heroSection {
   overflow-x: hidden;
   height: 90vh;
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: auto;
   padding: 0 2% 0 5%;
 }
 @media (max-width: 1100px) {
@@ -126,7 +115,6 @@ body {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    padding: 0 2% 0 1%;
   }
 }
 .heroSection .content {
@@ -191,6 +179,8 @@ body {
 }
 
 .aboutMeSection {
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -230,7 +220,7 @@ body {
   position: relative;
   height: 350px;
   width: 280px;
-  border: solid 2px var(--main-purple-secondary);
+  border: solid 2px #7f58f7;
   border-radius: 5px;
 }
 @media (max-width: 1100px) {
@@ -309,7 +299,7 @@ body {
 }
 @media (max-width: 900px) {
   .frontEndTools .fnTools2,
-.backEndBox .fnTools2 {
+  .backEndBox .fnTools2 {
     margin-left: 0.1rem;
   }
 }
@@ -337,6 +327,8 @@ body {
 }
 
 .projectsSection {
+  width: 80%;
+  margin: auto;
   padding: 5% 2% 0 5%;
   display: flex;
   flex-direction: column;
@@ -479,6 +471,8 @@ body {
 }
 
 .ContactSection {
+  width: 80%;
+  margin: auto;
   padding: 5% 2% 10% 5%;
   display: flex;
   flex-direction: column;
@@ -555,9 +549,9 @@ body {
   }
 }
 .ContactSection .submitBtn {
-  background-color: var(--main-purple-secondary);
+  background-color: #7a4eff;
   border: none;
-  color: var(--main-white);
+  color: aliceblue;
   padding: 0.8rem;
   margin-top: 4rem;
   width: 10rem;
@@ -608,4 +602,4 @@ body {
   .spSpan {
     text-align: center;
   }
-}/*# sourceMappingURL=styles.css.map */
+} /*# sourceMappingURL=styles.css.map */

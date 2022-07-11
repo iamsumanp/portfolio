@@ -132,7 +132,6 @@ body {
   width: 80%;
   margin: auto;
 }
-
 .heroSection {
   overflow-x: hidden;
   height: 90vh;
@@ -234,7 +233,7 @@ body {
     position: relative;
     height: 350px;
     width: 280px;
-    border: solid 2px var(--main-purple-secondary);
+    border: solid 2px #7f58f7;
     border-radius: 5px;
     @include respond(large) {
       margin-left: 0;
@@ -408,6 +407,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    // margin-left: auto;
     .vl {
       border-bottom: 1px solid gray;
       margin-bottom: 5px;

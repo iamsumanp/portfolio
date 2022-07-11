@@ -41,7 +41,7 @@ export const Footer = () => {
             </a>
           </div>
         </div>
-        <span className="spSpan">&copy; 2022 - Suman</span>
+        <span className="spSpan">&copy; 2022 - Suman Pokharel</span>
       </div>
     </div>
   );

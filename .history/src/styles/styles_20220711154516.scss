@@ -18,9 +18,6 @@
 
 :root {
   --main-purple: #3500d3;
-  --main-white: rgb(255, 255, 255);
-  --main-black: #000000;
-  --main-purple-secondary: #7a4eff;
 }
 
 * {
@@ -65,7 +62,7 @@ body {
       right: 0;
       top: 8vh;
       height: 100vh;
-      background-color: var(--main-white);
+      background-color: rgb(255, 255, 255);
       flex-direction: column;
       width: 100%;
       z-index: 1;
@@ -99,7 +96,7 @@ body {
   .burgerMenu div {
     width: 25px;
     height: 3px;
-    background-color: var(--main-black);
+    background-color: black;
     transition: transform 0.4s ease;
 
     margin: 5px;
@@ -132,7 +129,6 @@ body {
   width: 80%;
   margin: auto;
 }
-
 .heroSection {
   overflow-x: hidden;
   height: 90vh;
@@ -234,7 +230,7 @@ body {
     position: relative;
     height: 350px;
     width: 280px;
-    border: solid 2px var(--main-purple-secondary);
+    border: solid 2px #7f58f7;
     border-radius: 5px;
     @include respond(large) {
       margin-left: 0;
@@ -408,6 +404,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    // margin-left: auto;
     .vl {
       border-bottom: 1px solid gray;
       margin-bottom: 5px;
@@ -518,9 +515,9 @@ body {
     }
   }
   .submitBtn {
-    background-color: var(--main-purple-secondary);
+    background-color: #7a4eff;
     border: none;
-    color: var(--main-white);
+    color: aliceblue;
     padding: 0.8rem;
     margin-top: 4rem;
     width: 10rem;
