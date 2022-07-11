@@ -7,7 +7,7 @@ export const Footer = () => {
     <div className="footerSection">
       <div className="footerContainer">
         <div className="socialMediaAndQuote">
-          <span className="spSpan">Designed And Built By Suman Pokharel</span>
+          <span>Designed And Built By Suman Pokharel</span>
           <div className="socialMedia">
             <a
               href="https://www.linkedin.com/in/suman-pokharel-2a4b61206/"
