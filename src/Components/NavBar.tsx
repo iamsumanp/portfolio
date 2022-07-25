@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import Pdf from "../assets/sumanpokharel.resume.pdf";
 const myLogo = require("../assets/logo.png");
 
 export const NavBar = () => {
@@ -83,7 +84,9 @@ export const NavBar = () => {
             Contact
           </HashLink>
         </li>
-        <li className="navLinks resume">Resume</li>
+        <a href={Pdf} rel="noopener noreferrer" target="_blank">
+          <li className="navLinks resume">Resume</li>
+        </a>
       </ul>
       <div className="burgerMenu" onClick={() => burgerClick()}>
         <div className={active ? "line1 toggle" : "line1"}></div>
