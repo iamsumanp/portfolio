@@ -249,6 +249,7 @@ body {
 }
 .aboutMeSection .imgContainer .imgProfile {
   height: 350px;
+  width: 285px;
   position: absolute;
   right: 8px;
   top: -11px;
@@ -257,6 +258,7 @@ body {
 @media (max-width: 800px) {
   .aboutMeSection .imgContainer .imgProfile {
     height: 300px;
+    width: 240px;
   }
 }
 .aboutMeSection .spanText {

@@ -1,0 +1,613 @@
+@mixin respond($breakpoint) {
+  @if ($breakpoint == large) {
+    @media (max-width: 1100px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == medium) {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == small) {
+    @media (max-width: 800px) {
+      @content;
+    }
+  }
+}
+
+:root {
+  --main-purple: #3500d3;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  //   list-style: none;
+  //   background-color: black;
+  @include respond(medium) {
+    overflow-x: hidden;
+  }
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 5rem;
+  // margin: 80% auto;
+  font-weight: bolder;
+  // overflow-x: hidden;
+
+  @include respond(large) {
+    margin-bottom: 5rem;
+    overflow-x: hidden;
+  }
+  padding: 0.2% 14%;
+  .logoImg {
+    height: 25px;
+    // margin-top: 10px;
+    // opacity: 1;
+  }
+
+  .navUl {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+    @include respond(medium) {
+      position: absolute;
+      right: 0;
+      top: 8vh;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+      flex-direction: column;
+      width: 100%;
+      // align-items: center;
+      z-index: 1;
+      justify-content: space-evenly;
+      transform: translateX(100%);
+      transition: transform 0.4s ease-in;
+    }
+  }
+  .nav-active {
+    transform: translateX(0%);
+  }
+  .burgerMenu {
+    display: none;
+
+    @include respond(medium) {
+      display: block;
+      cursor: pointer;
+    }
+
+    .toggle {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle2 {
+      opacity: 0;
+    }
+
+    .toggle3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+  .burgerMenu div {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transition: transform 0.4s ease;
+
+    margin: 5px;
+  }
+
+  .navLinks {
+    // padding: 0 40px;
+    cursor: pointer;
+    align-self: center;
+    text-decoration: none;
+
+    &.resume {
+      border: solid 1px var(--main-purple);
+      color: var(--main-purple);
+      // padding: 1%;
+      padding: 9px 25px;
+      border-radius: 5px;
+      // padding: 10px;
+    }
+    .linkHash {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+// .mb {
+//   margin-bottom: 100vh;
+// }
+.heroSection {
+  //   background-color: aqua;
+  overflow-x: hidden;
+  height: 90vh;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  // position: relative;
+  padding: 0 2% 0 5%;
+  @include respond(large) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    // @media screen and  {
+
+    // }
+    @include respond(large) {
+      margin-top: 5rem;
+    }
+    .h4text {
+      color: var(--main-purple);
+    }
+    .h1text {
+      margin-top: 0;
+      font-size: 2.5rem;
+      @include respond(small) {
+        font-size: 2rem;
+      }
+    }
+    .h4text,
+    .h2text {
+      letter-spacing: 0.5px;
+      margin-top: 0;
+    }
+    .h2text {
+      font-size: 1.8rem;
+      @include respond(small) {
+        font-size: 1.35rem;
+      }
+    }
+    .h5text {
+      width: 55%;
+      line-height: 2;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      @include respond(small) {
+        width: 100%;
+      }
+    }
+  }
+
+  .svgImgg {
+    //   height: 800px !important;
+    //   margin-top: 50px;
+    // background-color: #3500d3;
+    margin-left: auto;
+    width: 22rem;
+    @include respond(large) {
+      margin-left: 0;
+    }
+    @include respond(small) {
+      width: 19rem;
+    }
+  }
+}
+
+.aboutMeSection {
+  width: 80%;
+  margin: auto;
+  // height: 40vh;
+  //   background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   align-items: center;
+  padding: 7% 2% 10% 5%;
+  @include respond(large) {
+    padding: 7rem 2% 10% 1.5%;
+  }
+  //   flex-grow: 1;
+  //   flex-basis: 1;
+  //   flex: 1;
+  .contentAndImage {
+    display: flex;
+    flex-direction: row;
+    @include respond(large) {
+      flex-direction: column-reverse;
+      margin-top: 2rem;
+    }
+  }
+  .h2textabout {
+    margin-top: -3rem;
+  }
+
+  .aboutMeContent {
+    display: flex;
+    flex-direction: column;
+    // width: max-content;
+    width: 60%;
+    // flex-shrink: 0;
+    @include respond(large) {
+      width: 100%;
+    }
+  }
+  .imgContainer {
+    margin-left: auto;
+    // width: ;
+    // background-color: #8f6cf8;
+    margin-top: 2rem;
+    position: relative;
+    height: 350px;
+    width: 280px;
+    border: solid 2px #7f58f7;
+    border-radius: 5px;
+    @include respond(large) {
+      margin-left: 0;
+      align-self: center;
+      margin-bottom: 2rem;
+    }
+    @include respond(small) {
+      height: 300px;
+      width: 240px;
+    }
+    .imgProfile {
+      height: 350px;
+      position: absolute;
+      right: 8px;
+      top: -11px;
+      border-radius: 5px;
+      // border: solid px black;
+      @include respond(small) {
+        height: 300px;
+      }
+    }
+  }
+  .spanText {
+    font-weight: bold;
+    margin-top: 2rem;
+    line-height: 2;
+    letter-spacing: 0.4px;
+    &.tech {
+      margin-top: 5rem;
+      //   background-color: #3500d3;
+    }
+  }
+  .backEndFrontEndContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+    justify-content: space-between;
+    // justify-content: space-evenly;
+    @include respond(large) {
+      flex-direction: column;
+    }
+    .frontEndBox {
+      // box-shadow: 10px 10px 40px 2px var(--main-purple);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      @include respond(large) {
+        padding: 1rem;
+        margin-bottom: 3rem;
+      }
+      .spanTitle {
+        align-self: center;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.frontEndTools,
+.backEndBox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  // justify-content: space-between;
+
+  .fnTools2 {
+    margin-left: 3rem;
+    @include respond(medium) {
+      margin-left: 0.1rem;
+    }
+  }
+  .fnTool {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0.5rem;
+    .triangleRight {
+      color: var(--main-purple);
+    }
+  }
+}
+.techName {
+  margin-left: 0.8rem;
+  text-transform: uppercase;
+  font-size: 15px;
+  @include respond(medium) {
+    font-size: 11px;
+    margin-left: 0.2rem;
+  }
+}
+
+.projectsSection {
+  width: 80%;
+  margin: auto;
+  padding: 5% 2% 0 5%;
+  // height: 40rem;
+  @include respond(large) {
+    padding: 7rem 2% 10% 1.5%;
+  }
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+
+  .Project1Container,
+  .Project3Container {
+    display: flex;
+    flex-direction: column;
+  }
+  .nameLabelLine {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    // justify-content: flex-start;
+    align-items: center;
+
+    .vl {
+      border-bottom: 1px solid gray;
+      margin-top: 5px;
+      height: inherit;
+      width: 35%;
+      @include respond(large) {
+        width: 50%;
+      }
+    }
+  }
+
+  .h2textabout {
+    margin-top: -3rem;
+  }
+  .projectContentAndImage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include respond(large) {
+      flex-direction: column-reverse;
+    }
+
+    .hirestationImg {
+      height: 15rem;
+      border-radius: 5px;
+      margin-left: auto;
+      @include respond(large) {
+        margin-left: 0;
+        align-self: center;
+        margin: 2rem 0 4rem 0;
+        // height: 12rem;
+      }
+      @include respond(small) {
+        height: 10rem;
+      }
+    }
+  }
+  .linksContainer {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+  }
+}
+
+.projContent {
+  width: 50%;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  @include respond(large) {
+    width: 100%;
+  }
+}
+.projectLabel {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.Project2Container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  margin-bottom: 7.5rem;
+  // background-color: aqua;x
+  .nameLabelLine2 {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    // margin-left: auto;
+    .vl {
+      border-bottom: 1px solid gray;
+      margin-bottom: 5px;
+      // height: inherit;
+      width: 35%;
+      margin-right: 1rem;
+      @include respond(large) {
+        width: 50%;
+      }
+      @include respond(small) {
+        width: 40%;
+      }
+    }
+  }
+}
+.projectContentAndImage1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // margin-top: 5rem;
+  @include respond(large) {
+    flex-direction: column;
+  }
+
+  .baathcheethImg {
+    height: 15rem;
+    border-radius: 5px;
+    // margin-left: auto;
+    margin-right: auto;
+    padding-right: 2rem;
+    @include respond(large) {
+      margin-right: 0;
+      align-self: center;
+      margin: 2rem 0 4rem 0;
+    }
+    @include respond(small) {
+      height: 10rem;
+    }
+  }
+}
+
+.ContactSection {
+  width: 80%;
+  margin: auto;
+  padding: 5% 2% 10% 5%;
+  // height: 40rem;
+  display: flex;
+  flex-direction: column;
+  @include respond(large) {
+    padding: 5rem 2% 10% 1.5%;
+  }
+  .formContainer {
+    margin-top: 2rem;
+  }
+  .nameAndEmailSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include respond(medium) {
+      flex-direction: column;
+      width: 100%;
+    }
+    .nameContainer {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      @include respond(medium) {
+        width: 100%;
+      }
+    }
+    .emailContainer {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      margin-left: 5rem;
+      @include respond(medium) {
+        margin-left: 0;
+        margin-top: 3rem;
+        width: 100%;
+      }
+    }
+
+    .inputForm {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      // border: none;
+      // border-style: groove;
+      padding: 0.6rem 0.4rem;
+      width: 100%;
+      border-width: 1px;
+      outline: none;
+    }
+  }
+  .label {
+    margin-bottom: 2rem;
+    font-weight: bold;
+  }
+  .MessageContainer {
+    display: flex;
+    flex-direction: column;
+    // width: 90%;
+    margin-top: 4rem;
+
+    #messageArea {
+      width: 46.5%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      // border: none;
+      // border-style: groove;
+      // border-width: thin;
+      height: 7rem;
+      resize: none;
+      outline: none;
+      padding: 0.5rem 0.4rem;
+      @include respond(medium) {
+        // flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
+  .submitBtn {
+    background-color: #7a4eff;
+    border: none;
+    color: aliceblue;
+    padding: 0.8rem;
+    margin-top: 4rem;
+    width: 10rem;
+    border-radius: 3px;
+    cursor: pointer;
+
+    @include respond(medium) {
+      width: 100%;
+    }
+  }
+}
+.footerSection {
+  width: 80%;
+  margin: auto;
+  // padding: 3rem 0 4rem 0;
+  padding: 3% 2% 4% 1.5%;
+
+  .footerContainer {
+    display: flex;
+    flex-direction: column;
+    @include respond(medium) {
+      align-items: center;
+    }
+  }
+  .socialMediaAndQuote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    @include respond(medium) {
+      flex-direction: column;
+      // justify-content: center;
+      // align-items: center;
+    }
+    .icons {
+      margin-left: 1rem;
+    }
+    .socialMedia {
+      @include respond(medium) {
+        margin: 2rem 0;
+      }
+    }
+  }
+}
+.spSpan {
+  @include respond(small) {
+    text-align: center;
+  }
+}
