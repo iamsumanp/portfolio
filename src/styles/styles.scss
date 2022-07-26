@@ -84,7 +84,10 @@ body {
     }
   }
   .nav-active {
-    transform: translateX(-5%);
+    transform: translateX(0%);
+    @include respond(small) {
+      transform: translateX(-5%);
+    }
   }
   .burgerMenu {
     display: none;
