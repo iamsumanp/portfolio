@@ -121,17 +121,20 @@ export const AboutMe = () => {
                 <VscTriangleRight className="triangleRight" />
                 <span className="techName">HTML</span>
               </div>
-
+              <div className="fnTool">
+                <VscTriangleRight className="triangleRight" />
+                <span className="techName">Git</span>
+              </div>
               <div className="fnTool">
                 <VscTriangleRight className="triangleRight" />
                 <span className="techName">PHP</span>
               </div>
+            </div>
+            <div className="fnTools2">
               <div className="fnTool">
                 <VscTriangleRight className="triangleRight" />
                 <span className="techName">FIGMA</span>
               </div>
-            </div>
-            <div className="fnTools2">
               <div className="fnTool">
                 <VscTriangleRight className="triangleRight" />
                 <span className="techName">TypeScript</span>
@@ -167,10 +170,6 @@ export const AboutMe = () => {
               <div className="fnTool">
                 <VscTriangleRight className="triangleRight" />
                 <span className="techName">MongoDB</span>
-              </div>
-              <div className="fnTool">
-                <VscTriangleRight className="triangleRight" />
-                <span className="techName">Git</span>
               </div>
             </div>
             <div className="fnTools2">
