@@ -53,10 +53,11 @@ body {
   .navBar .navUl {
     position: absolute;
     right: 0;
-    top: 8vh;
+    top: 6vh;
     height: 100vh;
     background-color: var(--main-white);
     flex-direction: column;
+    align-items: center;
     width: 100%;
     z-index: 1;
     justify-content: space-evenly;
@@ -65,7 +66,7 @@ body {
   }
 }
 .navBar .nav-active {
-  transform: translateX(0%);
+  transform: translateX(-5%);
 }
 .navBar .burgerMenu {
   display: none;
