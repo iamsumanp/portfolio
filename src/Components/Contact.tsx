@@ -1,10 +1,13 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export const Contact = () => {
   const contactRef = useRef<HTMLDivElement>(null);
+  const form = useRef<any>();
   const tline: gsap.TimelineVars | undefined = useRef();
 
   const q = gsap.utils.selector(contactRef);
@@ -16,10 +19,32 @@ export const Contact = () => {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
+    // if (){
 
-    setName("");
-    setEmail("");
-    setMessage("");
+    // }
+    emailjs
+      .sendForm(
+        "service_v2swzbh",
+        "template_rcz3g9r",
+        form.current,
+        "hhdRW3rc1RE2CP7iz"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("vayo");
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+
+    // setName("");
+    // setEmail("");
+    // setMessage("");
   };
 
   useEffect(() => {
@@ -56,7 +81,7 @@ export const Contact = () => {
   return (
     <div className="ContactSection" id="contact" ref={contactRef}>
       <h2 className="h2textabout">Interested In working together?</h2>
-      <form className="formContainer" onSubmit={submitHandler}>
+      <form className="formContainer" ref={form} onSubmit={submitHandler}>
         <div className="nameAndEmailSection">
           <div className="nameContainer">
             <label htmlFor="Name" className="label">
@@ -64,6 +89,7 @@ export const Contact = () => {
             </label>
             <input
               type="text"
+              name="user_name"
               value={name}
               className="inputForm"
               onChange={(e) => setName(e.target.value)}
@@ -77,6 +103,7 @@ export const Contact = () => {
               type="email"
               value={email}
               className="inputForm"
+              name="user_email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
