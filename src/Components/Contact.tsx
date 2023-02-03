@@ -2,10 +2,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import toast, { Toaster } from "react-hot-toast";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Contact = () => {
+  const notify = () => toast.success("Form submitted!");
   const contactRef = useRef<HTMLDivElement>(null);
   const form = useRef<any>();
   const tline: gsap.TimelineVars | undefined = useRef();
@@ -14,14 +16,18 @@ export const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [active, setActive] = useState(false);
 
   const submitHandler: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    // if (){
 
-    // }
+    if (name === "" || email === "") {
+      setActive(true);
+      return;
+    }
+
     emailjs
       .sendForm(
         "service_v2swzbh",
@@ -32,7 +38,8 @@ export const Contact = () => {
       .then(
         (result) => {
           console.log(result.text);
-          alert("vayo");
+          notify();
+          setActive(false);
           setName("");
           setEmail("");
           setMessage("");
@@ -41,10 +48,6 @@ export const Contact = () => {
           console.log(error.text);
         }
       );
-
-    // setName("");
-    // setEmail("");
-    // setMessage("");
   };
 
   useEffect(() => {
@@ -81,6 +84,7 @@ export const Contact = () => {
   return (
     <div className="ContactSection" id="contact" ref={contactRef}>
       <h2 className="h2textabout">Interested In working together?</h2>
+      <Toaster />
       <form className="formContainer" ref={form} onSubmit={submitHandler}>
         <div className="nameAndEmailSection">
           <div className="nameContainer">
@@ -115,11 +119,12 @@ export const Contact = () => {
           <textarea
             name="message"
             id="messageArea"
-            // cols=30
-            // rows=10
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
+          <span className={active ? "active" : "activeName"}>
+            Content should not be empty*
+          </span>
         </div>
         <button className="submitBtn" type="submit">
           SUBMIT

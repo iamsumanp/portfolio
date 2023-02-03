@@ -34,6 +34,16 @@ body {
   padding: 0.2% 12.5%;
   background-color: var(--main-white);
 }
+.activeName,
+.activeMessageError {
+  display: none;
+}
+.active,
+.activeMessage {
+  color: #e2402d;
+  padding-top: 1rem;
+}
+
 @media (max-width: 1100px) {
   .navBar {
     margin-bottom: 5rem;
@@ -322,7 +332,7 @@ body {
 }
 @media (max-width: 900px) {
   .frontEndTools .fnTools2,
-.backEndBox .fnTools2 {
+  .backEndBox .fnTools2 {
     margin-left: 0.1rem;
   }
 }
@@ -621,4 +631,4 @@ body {
   .spSpan {
     text-align: center;
   }
-}/*# sourceMappingURL=styles.css.map */
+} /*# sourceMappingURL=styles.css.map */
