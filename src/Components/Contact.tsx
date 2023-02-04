@@ -8,15 +8,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const Contact = () => {
   const notify = () => toast.success("Form submitted!");
-  const contactRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
   const form = useRef<any>();
   const tline: gsap.TimelineVars | undefined = useRef();
 
   const q = gsap.utils.selector(contactRef);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [active, setActive] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [active, setActive] = useState<boolean>(false);
 
   const submitHandler: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
