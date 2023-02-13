@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const baatCheethImg = require("../assets/vaatcheeth.png");
 const purlieuImg = require("../assets/purlieu.PNG");
+const dirgahyu = require("../assets/dirgahyu.PNG");
 
 const hirestationImg = require("../assets/hirestation.png");
 
@@ -154,23 +155,24 @@ export const Projects = () => {
       <div className="Project2Container">
         <div className="nameLabelLine2">
           <div className="vl"></div>
-          <span className="projectLabel">2. BaathCheeth</span>
+          <span className="projectLabel">2. Dirgahyu</span>
         </div>
         <div className="projectContentAndImage1">
-          <img
-            src={baatCheethImg}
-            alt="hirestationImg"
-            className="baathcheethImg"
-          />
+          <img src={dirgahyu} alt="hirestationImg" className="baathcheethImg" />
           <div className="projContent">
             <span className="projectDiscription">
-              BaatCheeth is a web app where you can send messages, create
-              channels, communicate with people, etc.Full freedom is given to
-              the users(deleting messages,creating new channels)
+              A web app that provides information about hospitals and blood
+              donation centers in Nepal. It includes a directory of healthcare
+              facilities, blood banks, and blood donation centers, with details
+              like addresses, contact information, and available services. It
+              also features a blood request section and resources about blood
+              donation eligibility and process. The app aims to make it easier
+              for users to access information and resources related to
+              healthcare and blood donation in Nepal.
             </span>
             <div className="linksContainer">
               <a
-                href="https://baatcheeth.vercel.app/"
+                href="https://dirgahyu.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -181,7 +183,7 @@ export const Projects = () => {
                 />
               </a>
               <a
-                href="https://github.com/iamsumanp/BaatCheeth"
+                href="https://github.com/iamsumanp/dirgahyu"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -194,13 +196,7 @@ export const Projects = () => {
               <div className="fnTools1">
                 <div className="fnTool">
                   <VscTriangleRight className="triangleRight" />
-                  <span className="techName">React</span>
-                </div>
-              </div>
-              <div className="fnTools2">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">FireBase/Firestore</span>
+                  <span className="techName">React(Next JS)</span>
                 </div>
               </div>
             </div>
@@ -273,6 +269,62 @@ export const Projects = () => {
             alt="hirestationImg"
             className="hirestationImg"
           />
+        </div>
+      </div>
+      <div className="Project2Container">
+        <div className="nameLabelLine2">
+          <div className="vl"></div>
+          <span className="projectLabel">2. BaathCheeth</span>
+        </div>
+        <div className="projectContentAndImage1">
+          <img
+            src={baatCheethImg}
+            alt="hirestationImg"
+            className="baathcheethImg"
+          />
+          <div className="projContent">
+            <span className="projectDiscription">
+              BaatCheeth is a web app where you can send messages, create
+              channels, communicate with people, etc.Full freedom is given to
+              the users(deleting messages,creating new channels)
+            </span>
+            <div className="linksContainer">
+              <a
+                href="https://baatcheeth.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BiLink
+                  fill="#575454"
+                  size={40}
+                  style={{ marginRight: "1rem" }}
+                />
+              </a>
+              <a
+                href="https://github.com/iamsumanp/BaatCheeth"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiFillGithub fill="#575454" size={40} />
+              </a>
+            </div>
+
+            <span style={{ fontWeight: "bold" }}>Tools used :</span>
+            <div className="frontEndTools">
+              <div className="fnTools1">
+                <div className="fnTool">
+                  <VscTriangleRight className="triangleRight" />
+                  <span className="techName">React</span>
+                </div>
+              </div>
+              <div className="fnTools2">
+                <div className="fnTool">
+                  <VscTriangleRight className="triangleRight" />
+                  <span className="techName">FireBase/Firestore</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
