@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import { VscTriangleRight } from "react-icons/vsc";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-const mePhoto = require("../assets/testphoto.jpg");
+// const mePhoto = require("../assets/testphoto.jpg");
+const mePhoto = require("../../assets/testphoto.jpg");
 
 export const AboutMe = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);

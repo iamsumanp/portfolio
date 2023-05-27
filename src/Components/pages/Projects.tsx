@@ -6,11 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
-const baatCheethImg = require("../assets/vaatcheeth.png");
-const purlieuImg = require("../assets/purlieu.PNG");
-const dirgahyu = require("../assets/dirgahyu.PNG");
+const baatCheethImg = require("../../assets/vaatcheeth.png");
+const purlieuImg = require("../../assets/purlieu.PNG");
+const dirgahyu = require("../../assets/dirgahyu.PNG");
 
-const hirestationImg = require("../assets/hirestation.png");
+const hirestationImg = require("../../assets/hirestation.png");
 
 export const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);

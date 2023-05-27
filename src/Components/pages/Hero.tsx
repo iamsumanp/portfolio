@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import SvgImg from "./IconComponent/SvgImg";
+import SvgImg from "../IconComponent/SvgImg";
 
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);

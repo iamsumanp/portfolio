@@ -1,8 +1,8 @@
 import { gsap } from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { HashLink } from "react-router-hash-link";
-import Pdf from "../assets/sumanpokharel.resume.pdf";
-const myLogo = require("../assets/logo.png");
+import Pdf from "../../assets/sumanpokharel.resume.pdf";
+const myLogo = require("../../assets/logo.png");
 
 export const NavBar = () => {
   const [active, setActive] = useState(false);
@@ -42,6 +42,11 @@ export const NavBar = () => {
       </HashLink>
 
       <ul className={active ? "navUl nav-active" : "navUl"}>
+        <li className="navLinks" onClick={active ? burgerClick : undefined}>
+          {/* <HashLink to="#aboutMe" className="linkHash" smooth> */}
+          My Blogs
+          {/* </HashLink> */}
+        </li>
         <li className="navLinks" onClick={active ? burgerClick : undefined}>
           <HashLink to="#aboutMe" className="linkHash" smooth>
             About me
