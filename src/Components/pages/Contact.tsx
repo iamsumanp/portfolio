@@ -57,7 +57,6 @@ export const Contact = () => {
         scrollTrigger: {
           trigger: ".ContactSection",
           start: "-40 center",
-          // toggleActions: "play none none reverse",
         },
       })
       .fromTo(
@@ -66,7 +65,6 @@ export const Contact = () => {
         {
           y: 0,
           opacity: 1,
-          // duration: 2,
         }
       )
       .fromTo(
@@ -75,7 +73,6 @@ export const Contact = () => {
         {
           y: 0,
           opacity: 1,
-          // duration: 2,
         },
         "-=1"
       );

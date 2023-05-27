@@ -3,12 +3,10 @@ import React from "react";
 function SvgIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      //   xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
       width="786.81995"
       height="572.25773"
       viewBox="0 0 786.81995 572.25773"
-      //   xmlns:xlink="http://www.w3.org/1999/xlink"
       {...props}
     >
       <circle cx="458.32136" cy="74.18162" r="26.70075" fill="#f2f2f2" />

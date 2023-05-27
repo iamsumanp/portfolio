@@ -6,11 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
-const baatCheethImg = require("../assets/vaatcheeth.png");
-const purlieuImg = require("../assets/purlieu.PNG");
-const dirgahyu = require("../assets/dirgahyu.PNG");
+const baatCheethImg = require("../../assets/vaatcheeth.png");
+const purlieuImg = require("../../assets/purlieu.PNG");
+const dirgahyu = require("../../assets/dirgahyu.PNG");
 
-const hirestationImg = require("../assets/hirestation.png");
+const hirestationImg = require("../../assets/hirestation.png");
 
 export const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,6 @@ export const Projects = () => {
         scrollTrigger: {
           trigger: ".Project2Container",
           start: "-130 center",
-          // toggleActions: "play none none reverse",
         },
       })
       .fromTo(
@@ -65,7 +64,6 @@ export const Projects = () => {
         {
           y: 0,
           opacity: 1,
-          // duration: 2,
         }
       );
     tl4.current = gsap
@@ -74,7 +72,6 @@ export const Projects = () => {
         scrollTrigger: {
           trigger: ".Project3Container",
           start: "-130 center",
-          // toggleActions: "play none none reverse",
         },
       })
       .fromTo(
@@ -83,7 +80,6 @@ export const Projects = () => {
         {
           y: 0,
           opacity: 1,
-          // duration: 2,
         }
       );
   });

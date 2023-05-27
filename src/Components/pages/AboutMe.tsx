@@ -4,12 +4,12 @@ import { useEffect, useRef } from "react";
 import { VscTriangleRight } from "react-icons/vsc";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-const mePhoto = require("../assets/testphoto.jpg");
+// const mePhoto = require("../assets/testphoto.jpg");
+const mePhoto = require("../../assets/testphoto.jpg");
 
 export const AboutMe = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
   const tl: gsap.TimelineVars | undefined = useRef();
-  // gsap.registerPlugin(ScrollTrigger);
 
   const q = gsap.utils.selector(aboutMeRef);
   useEffect(() => {
@@ -26,7 +26,6 @@ export const AboutMe = () => {
         {
           y: 10,
           opacity: 0,
-          // stagger: 0.4,
         },
         {
           y: 0,
@@ -39,7 +38,6 @@ export const AboutMe = () => {
         {
           y: 10,
           opacity: 0,
-          // stagger: 0.4,
         },
         {
           y: 0,
@@ -57,11 +55,8 @@ export const AboutMe = () => {
         },
         {
           x: 0,
-          // duration: 0.5,
           opacity: 1,
           duration: 1,
-
-          // ease: "Power3.easeOut",
         },
         "-=0.7"
       )
@@ -70,7 +65,6 @@ export const AboutMe = () => {
         {
           y: 10,
           opacity: 0,
-          // stagger: 0.4,
         },
         {
           y: 0,

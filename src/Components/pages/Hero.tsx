@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import SvgImg from "./IconComponent/SvgImg";
+import SvgImg from "../IconComponent/SvgImg";
 
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,6 @@ export const Hero = () => {
         {
           y: 20,
           opacity: 0,
-          // stagger: 0.4,
         },
         {
           y: 0,
@@ -43,9 +42,7 @@ export const Hero = () => {
           into web apps and building experiences.
         </h5>
       </div>
-      {/* <div className="svgImgg"> */}
       <SvgImg height={221} className="svgImgg" />
-      {/* </div> */}
     </div>
   );
 };
