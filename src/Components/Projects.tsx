@@ -56,7 +56,6 @@ export const Projects = () => {
         scrollTrigger: {
           trigger: ".Project2Container",
           start: "-130 center",
-          // toggleActions: "play none none reverse",
         },
       })
       .fromTo(
@@ -65,7 +64,6 @@ export const Projects = () => {
         {
           y: 0,
           opacity: 1,
-          // duration: 2,
         }
       );
     tl4.current = gsap
@@ -74,7 +72,6 @@ export const Projects = () => {
         scrollTrigger: {
           trigger: ".Project3Container",
           start: "-130 center",
-          // toggleActions: "play none none reverse",
         },
       })
       .fromTo(
@@ -83,7 +80,6 @@ export const Projects = () => {
         {
           y: 0,
           opacity: 1,
-          // duration: 2,
         }
       );
   });
