@@ -1,4 +1,4 @@
 const Blogs = () => {
-  return <div className="blogsContainer">This are My Blogs</div>;
+  return <div className='blogsContainer'>Coming Soon...</div>;
 };
 export default Blogs;
