@@ -1,16 +1,16 @@
-import { AiFillGithub } from "react-icons/ai";
-import { BiLink } from "react-icons/bi";
-import { VscTriangleRight } from "react-icons/vsc";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { AiFillGithub } from 'react-icons/ai';
+import { BiLink } from 'react-icons/bi';
+import { VscTriangleRight } from 'react-icons/vsc';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
 gsap.registerPlugin(ScrollTrigger);
 
-const baatCheethImg = require("../../assets/vaatcheeth.png");
-const purlieuImg = require("../../assets/purlieu.PNG");
-const dirgahyu = require("../../assets/dirgahyu.PNG");
+const baatCheethImg = require('../../assets/vaatcheeth.png');
+const purlieuImg = require('../../assets/purlieu.PNG');
+const dirgahyu = require('../../assets/dirgahyu.PNG');
 
-const hirestationImg = require("../../assets/hirestation.png");
+const hirestationImg = require('../../assets/hirestation.png');
 
 export const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -25,13 +25,13 @@ export const Projects = () => {
       .timeline({
         defaults: { duration: 0.5 },
         scrollTrigger: {
-          trigger: ".projectsSection",
-          start: "-240 center",
+          trigger: '.projectsSection',
+          start: '-240 center',
           // toggleActions: "play none none reverse",
         },
       })
       .fromTo(
-        q(".h2textabout"),
+        q('.h2textabout'),
         { y: 10, opacity: 0 },
         {
           y: 0,
@@ -40,7 +40,7 @@ export const Projects = () => {
         }
       )
       .fromTo(
-        q(".Project1Container"),
+        q('.Project1Container'),
         { y: 10, opacity: 0 },
         {
           y: 0,
@@ -48,18 +48,18 @@ export const Projects = () => {
 
           // duration: 2,
         },
-        "-=0.8"
+        '-=0.8'
       );
     tl3.current = gsap
       .timeline({
         defaults: { duration: 0.5 },
         scrollTrigger: {
-          trigger: ".Project2Container",
-          start: "-130 center",
+          trigger: '.Project2Container',
+          start: '-130 center',
         },
       })
       .fromTo(
-        q(".Project2Container"),
+        q('.Project2Container'),
         { y: 10, opacity: 0 },
         {
           y: 0,
@@ -70,12 +70,12 @@ export const Projects = () => {
       .timeline({
         defaults: { duration: 0.5 },
         scrollTrigger: {
-          trigger: ".Project3Container",
-          start: "-130 center",
+          trigger: '.Project3Container',
+          start: '-130 center',
         },
       })
       .fromTo(
-        q(".Project3Container"),
+        q('.Project3Container'),
         { y: 10, opacity: 0 },
         {
           y: 0,
@@ -84,79 +84,79 @@ export const Projects = () => {
       );
   });
   return (
-    <div className="projectsSection" id="projectSection" ref={projectsRef}>
-      <h2 className="h2textabout">My Recent Projects</h2>
-      <div className="Project1Container">
-        <div className="nameLabelLine">
-          <span className="projectLabel">1. HireStation</span>
-          <div className="vl"></div>
+    <div className='projectsSection' id='projectSection' ref={projectsRef}>
+      <h2 className='h2textabout'>My Recent Projects</h2>
+      <div className='Project1Container'>
+        <div className='nameLabelLine'>
+          <span className='projectLabel'>1. HireStation</span>
+          <div className='vl'></div>
         </div>
-        <div className="projectContentAndImage">
-          <div className="projContent">
-            <span className="projectDiscription">
+        <div className='projectContentAndImage'>
+          <div className='projContent'>
+            <span className='projectDiscription'>
               Hirestation is an webapp for buying and selling services with
               stripe as payment method. User can sell or buy any kind of
               services(game development,web development,mobile app development)
               in Hirestation.
             </span>
-            <div className="linksContainer">
+            <div className='linksContainer'>
               <a
-                href="https://hirestation.herokuapp.com/"
-                target="_blank"
-                rel="noreferrer"
+                href='https://hirestation.vercel.app/'
+                target='_blank'
+                rel='noreferrer'
               >
                 <BiLink
-                  fill="#575454"
+                  fill='#575454'
                   size={40}
-                  style={{ marginRight: "1rem" }}
+                  style={{ marginRight: '1rem' }}
                 />
               </a>
               <a
-                href="https://github.com/iamsumanp/hirestation-heroku"
-                target="_blank"
-                rel="noreferrer"
+                href='https://github.com/iamsumanp/hirestationfrontend'
+                target='_blank'
+                rel='noreferrer'
               >
-                <AiFillGithub fill="#575454" size={40} />
+                <AiFillGithub fill='#575454' size={40} />
               </a>
             </div>
 
-            <span style={{ fontWeight: "bold" }}>Tools used :</span>
-            <div className="frontEndTools">
-              <div className="fnTools1">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">React</span>
+            <span style={{ fontWeight: 'bold' }}>Tools used :</span>
+            <div className='frontEndTools'>
+              <div className='fnTools1'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>React</span>
                 </div>
 
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">ExpressJS</span>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>ExpressJS</span>
                 </div>
               </div>
-              <div className="fnTools2">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">MONGODB</span>
+              <div className='fnTools2'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>MONGODB</span>
                 </div>
               </div>
             </div>
           </div>
           <img
             src={hirestationImg}
-            alt="hirestationImg"
-            className="hirestationImg"
+            alt='hirestationImg'
+            className='hirestationImg'
           />
         </div>
       </div>
-      <div className="Project2Container">
-        <div className="nameLabelLine2">
-          <div className="vl"></div>
-          <span className="projectLabel">2. Dirgahyu</span>
+      <div className='Project2Container'>
+        <div className='nameLabelLine2'>
+          <div className='vl'></div>
+          <span className='projectLabel'>2. Dirgahyu</span>
         </div>
-        <div className="projectContentAndImage1">
-          <img src={dirgahyu} alt="hirestationImg" className="baathcheethImg" />
-          <div className="projContent">
-            <span className="projectDiscription">
+        <div className='projectContentAndImage1'>
+          <img src={dirgahyu} alt='hirestationImg' className='baathcheethImg' />
+          <div className='projContent'>
+            <span className='projectDiscription'>
               A web app that provides information about hospitals and blood
               donation centers in Nepal. It includes a directory of healthcare
               facilities, blood banks, and blood donation centers, with details
@@ -166,47 +166,47 @@ export const Projects = () => {
               for users to access information and resources related to
               healthcare and blood donation in Nepal.
             </span>
-            <div className="linksContainer">
+            <div className='linksContainer'>
               <a
-                href="https://dirgahyu.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
+                href='https://dirgahyu.vercel.app/'
+                target='_blank'
+                rel='noreferrer'
               >
                 <BiLink
-                  fill="#575454"
+                  fill='#575454'
                   size={40}
-                  style={{ marginRight: "1rem" }}
+                  style={{ marginRight: '1rem' }}
                 />
               </a>
               <a
-                href="https://github.com/iamsumanp/dirgahyu"
-                target="_blank"
-                rel="noreferrer"
+                href='https://github.com/iamsumanp/dirgahyu'
+                target='_blank'
+                rel='noreferrer'
               >
-                <AiFillGithub fill="#575454" size={40} />
+                <AiFillGithub fill='#575454' size={40} />
               </a>
             </div>
 
-            <span style={{ fontWeight: "bold" }}>Tools used :</span>
-            <div className="frontEndTools">
-              <div className="fnTools1">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">React(Next JS)</span>
+            <span style={{ fontWeight: 'bold' }}>Tools used :</span>
+            <div className='frontEndTools'>
+              <div className='fnTools1'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>React(Next JS)</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="Project3Container">
-        <div className="nameLabelLine">
-          <span className="projectLabel">3. Purlieu</span>
-          <div className="vl"></div>
+      <div className='Project3Container'>
+        <div className='nameLabelLine'>
+          <span className='projectLabel'>3. Purlieu</span>
+          <div className='vl'></div>
         </div>
-        <div className="projectContentAndImage">
-          <div className="projContent">
-            <span className="projectDiscription">
+        <div className='projectContentAndImage'>
+          <div className='projContent'>
+            <span className='projectDiscription'>
               Purlieu is an web app which automates and digitize this
               semi-digital card recharge procedure in KU Canteen Management
               System(University canteen). It consist of a webpage interface
@@ -214,109 +214,109 @@ export const Projects = () => {
               recharge their university card with just their card number and
               online payment account.
             </span>
-            <div className="linksContainer">
+            <div className='linksContainer'>
               <a
-                href="https://purlieu-users-front.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
+                href='https://purlieu-users-front.vercel.app/'
+                target='_blank'
+                rel='noreferrer'
               >
                 <BiLink
-                  fill="#575454"
+                  fill='#575454'
                   size={40}
-                  style={{ marginRight: "1rem" }}
+                  style={{ marginRight: '1rem' }}
                 />
               </a>
               <a
-                href="https://github.com/shresthaoshan/purlieu_users_frontend"
-                target="_blank"
-                rel="noreferrer"
+                href='https://github.com/shresthaoshan/purlieu_users_frontend'
+                target='_blank'
+                rel='noreferrer'
               >
-                <AiFillGithub fill="#575454" size={40} />
+                <AiFillGithub fill='#575454' size={40} />
               </a>
             </div>
 
-            <span style={{ fontWeight: "bold" }}>Tools used :</span>
-            <div className="frontEndTools">
-              <div className="fnTools1">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">React</span>
+            <span style={{ fontWeight: 'bold' }}>Tools used :</span>
+            <div className='frontEndTools'>
+              <div className='fnTools1'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>React</span>
                 </div>
 
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">StyledComponents</span>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>StyledComponents</span>
                 </div>
               </div>
-              <div className="fnTools2">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">PostgreSQL</span>
+              <div className='fnTools2'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>PostgreSQL</span>
                 </div>
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">Figma</span>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>Figma</span>
                 </div>
               </div>
             </div>
           </div>
           <img
             src={purlieuImg}
-            alt="hirestationImg"
-            className="hirestationImg"
+            alt='hirestationImg'
+            className='hirestationImg'
           />
         </div>
       </div>
-      <div className="Project2Container">
-        <div className="nameLabelLine2">
-          <div className="vl"></div>
-          <span className="projectLabel">2. BaathCheeth</span>
+      <div className='Project2Container'>
+        <div className='nameLabelLine2'>
+          <div className='vl'></div>
+          <span className='projectLabel'>2. BaathCheeth</span>
         </div>
-        <div className="projectContentAndImage1">
+        <div className='projectContentAndImage1'>
           <img
             src={baatCheethImg}
-            alt="hirestationImg"
-            className="baathcheethImg"
+            alt='hirestationImg'
+            className='baathcheethImg'
           />
-          <div className="projContent">
-            <span className="projectDiscription">
+          <div className='projContent'>
+            <span className='projectDiscription'>
               BaatCheeth is a web app where you can send messages, create
               channels, communicate with people, etc.Full freedom is given to
               the users(deleting messages,creating new channels)
             </span>
-            <div className="linksContainer">
+            <div className='linksContainer'>
               <a
-                href="https://baatcheeth.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
+                href='https://baatcheeth.vercel.app/'
+                target='_blank'
+                rel='noreferrer'
               >
                 <BiLink
-                  fill="#575454"
+                  fill='#575454'
                   size={40}
-                  style={{ marginRight: "1rem" }}
+                  style={{ marginRight: '1rem' }}
                 />
               </a>
               <a
-                href="https://github.com/iamsumanp/BaatCheeth"
-                target="_blank"
-                rel="noreferrer"
+                href='https://github.com/iamsumanp/BaatCheeth'
+                target='_blank'
+                rel='noreferrer'
               >
-                <AiFillGithub fill="#575454" size={40} />
+                <AiFillGithub fill='#575454' size={40} />
               </a>
             </div>
 
-            <span style={{ fontWeight: "bold" }}>Tools used :</span>
-            <div className="frontEndTools">
-              <div className="fnTools1">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">React</span>
+            <span style={{ fontWeight: 'bold' }}>Tools used :</span>
+            <div className='frontEndTools'>
+              <div className='fnTools1'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>React</span>
                 </div>
               </div>
-              <div className="fnTools2">
-                <div className="fnTool">
-                  <VscTriangleRight className="triangleRight" />
-                  <span className="techName">FireBase/Firestore</span>
+              <div className='fnTools2'>
+                <div className='fnTool'>
+                  <VscTriangleRight className='triangleRight' />
+                  <span className='techName'>FireBase/Firestore</span>
                 </div>
               </div>
             </div>
