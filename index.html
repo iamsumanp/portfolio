@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will you be my valentine?</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(
+          135deg,
+          #ff9ec7 0%,
+          #ffb3d9 50%,
+          #ffcce6 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-x: hidden;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+        animation: fadeIn 1s ease-in;
+      }
+
+      .gif-container {
+        margin-bottom: 30px;
+        animation: fadeIn 1s ease-in;
+      }
+
+      .gif-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .buttons-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      button {
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      #yesBtn {
+        background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      #yesBtn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      #noBtn {
+        background: linear-gradient(135deg, #ffb3d9 0%, #ffcce6 100%);
+        color: #ff6b9d;
+        font-size: 1.2rem;
+      }
+
+      #noBtn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .success-message {
+        font-size: 2.5rem;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+        animation: fadeIn 1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        75% {
+          transform: translateX(10px);
+        }
+      }
+
+      .bounce {
+        animation: bounce 0.5s ease;
+      }
+
+      .entry-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .entry-screen h2 {
+        font-size: 2.5rem;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1s ease-in;
+      }
+
+      .entry-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .name-input {
+        padding: 15px 25px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        font-family: 'Arial', sans-serif;
+        transition: all 0.3s ease;
+      }
+
+      .name-input:focus {
+        outline: none;
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .enter-button {
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+        color: white;
+      }
+
+      .enter-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .main-content {
+        display: none;
+      }
+
+      .main-content.unlocked {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Entry Screen -->
+    <div class="container entry-screen" id="entryScreen">
+      <h2>What's your name?</h2>
+      <div class="entry-form">
+        <input
+          type="text"
+          id="nameInput"
+          class="name-input"
+          placeholder="Enter your name..."
+          autocomplete="off"
+        />
+        <button id="enterButton" class="enter-button">Enter</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container main-content" id="mainContent">
+      <h1 id="question">Miss Musyem, Will you be my valentine?</h1>
+
+      <div class="gif-container">
+        <img
+          id="gif"
+          src="711f384dff486fdbad35cdf258188b2feafaaad6 (1).gif"
+          alt="Valentine GIF"
+        />
+      </div>
+
+      <div class="buttons-container" id="buttonsContainer">
+        <button id="yesBtn" class="yes_button">Yes</button>
+        <button id="noBtn" class="no_button">No</button>
+      </div>
+
+      <div id="successMessage" class="success-message" style="display: none">
+        Knew you would say yes! 💕
+      </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+      <source
+        src="beabadoobee-glue-song-sped-up-mp3pm_ha1Vq6Xh.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      const question = document.getElementById('question');
+      const gif = document.getElementById('gif');
+      const buttonsContainer = document.getElementById('buttonsContainer');
+      const successMessage = document.getElementById('successMessage');
+      const backgroundMusic = document.getElementById('backgroundMusic');
+
+      const messages = [
+        'No',
+        'Are you sure?',
+        'Puntu please',
+        'I will be sad',
+        'I will be very sad',
+        'I will be very very sad',
+      ];
+
+      let messageIndex = 0;
+
+      const unansweredGif = '711f384dff486fdbad35cdf258188b2feafaaad6 (1).gif'; // GIF shown before answer
+      const answeredGif = '9868f557c0c3049734ea8164d38b67c9 (1).gif'; // GIF shown after yes
+
+      // Entry screen elements
+      const entryScreen = document.getElementById('entryScreen');
+      const mainContent = document.getElementById('mainContent');
+      const nameInput = document.getElementById('nameInput');
+      const enterButton = document.getElementById('enterButton');
+
+      // Function to unlock the page
+      function unlockPage() {
+        entryScreen.style.display = 'none';
+        mainContent.classList.add('unlocked');
+
+        // Start playing music
+        backgroundMusic.volume = 0.5;
+        backgroundMusic.play().catch(function (error) {
+          console.log('Could not play music:', error);
+        });
+      }
+
+      // Handle enter button click
+      enterButton.addEventListener('click', function () {
+        const enteredName = nameInput.value.trim().toLowerCase();
+        if (enteredName === 'musyem') {
+          unlockPage();
+        } else {
+          // Shake animation for wrong answer
+          nameInput.style.animation = 'shake 0.5s';
+          setTimeout(() => {
+            nameInput.style.animation = '';
+            nameInput.value = '';
+            nameInput.focus();
+          }, 500);
+        }
+      });
+
+      // Handle Enter key press
+      nameInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          enterButton.click();
+        }
+      });
+
+      // Focus on input when page loads
+      window.addEventListener('load', function () {
+        nameInput.focus();
+      });
+
+      function handleNoClick() {
+        const noButton = document.querySelector('.no_button');
+        const yesButton = document.querySelector('.yes_button');
+
+        messageIndex = (messageIndex + 1) % messages.length;
+        noButton.textContent = messages[messageIndex];
+
+        const currentSize = parseFloat(
+          window.getComputedStyle(yesButton).fontSize,
+        );
+        yesButton.style.fontSize = `${currentSize * 1.5}px`;
+
+        // Hide no button after all messages are shown
+        if (messageIndex === messages.length - 1) {
+          setTimeout(() => {
+            noButton.style.display = 'none';
+          }, 100);
+        }
+
+        // Add bounce animation to yes button
+        yesButton.classList.add('bounce');
+        setTimeout(() => {
+          yesButton.classList.remove('bounce');
+        }, 500);
+      }
+
+      function handleYesClick() {
+        const yesButton = document.querySelector('.yes_button');
+
+        // Hide question and buttons
+        question.style.display = 'none';
+        buttonsContainer.style.display = 'none';
+
+        // Show success message
+        successMessage.style.display = 'block';
+
+        // Change gif to answered gif
+        gif.src = answeredGif;
+
+        // Add celebration animation
+        successMessage.classList.add('bounce');
+      }
+
+      document
+        .querySelector('.no_button')
+        .addEventListener('click', handleNoClick);
+      document
+        .querySelector('.yes_button')
+        .addEventListener('click', handleYesClick);
+    </script>
+  </body>
+</html>
