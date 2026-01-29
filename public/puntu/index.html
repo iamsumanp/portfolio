@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For You, With Love 💕</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(
+          135deg,
+          #ffeef8 0%,
+          #ffd6e8 50%,
+          #ffb6d5 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      /* Floating hearts */
+      .hearts-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 20px;
+        animation: floatHeart 15s infinite linear;
+        opacity: 0.3;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* Book container */
+      .book-container {
+        position: relative;
+        z-index: 1;
+        perspective: 1500px;
+      }
+
+      .book {
+        position: relative;
+        width: 320px;
+        height: 450px;
+        transform-style: preserve-3d;
+      }
+
+      /* Book spine */
+      .book::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 0;
+        width: 6px;
+        height: 100%;
+        background: linear-gradient(90deg, #d88aa0, #e8a0b8, #d88aa0);
+        border-radius: 2px 0 0 2px;
+      }
+
+      /* Back cover (always visible at bottom) */
+      .back-cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          #ffb3c6 0%,
+          #ff8fab 50%,
+          #ff6b9d 100%
+        );
+        border-radius: 0 12px 12px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        box-shadow: 0 8px 30px rgba(255, 105, 180, 0.3);
+      }
+
+      .back-cover-heart {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+      .back-cover-text {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Page sheet */
+      .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform-origin: left center;
+        transition: transform 0.6s ease;
+      }
+
+      .page.flipped {
+        transform: rotateY(-180deg);
+      }
+
+      .page-side {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 0 12px 12px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      .page-front {
+        background: linear-gradient(180deg, #fffafc 0%, #fff0f5 100%);
+        border: 1px solid rgba(255, 182, 213, 0.4);
+      }
+
+      .page-back {
+        background: linear-gradient(180deg, #fff0f5 0%, #ffe8f0 100%);
+        transform: rotateY(180deg);
+        border: 1px solid rgba(255, 182, 213, 0.4);
+      }
+
+      /* Cover */
+      .cover-front {
+        background: linear-gradient(
+          135deg,
+          #ff6b9d 0%,
+          #ff8fab 50%,
+          #ffb3c6 100%
+        ) !important;
+        color: white;
+        flex-direction: column;
+      }
+
+      .cover-heart {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      .cover-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2.5rem;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .cover-subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 15px;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Image placeholder */
+      .image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffeef8 0%, #ffe4f0 100%);
+        border-radius: 8px;
+        border: 2px dashed rgba(255, 105, 180, 0.3);
+        color: #ff6b9d;
+      }
+
+      .image-placeholder::before {
+        content: '🖼️';
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
+
+      .image-placeholder span {
+        font-size: 0.85rem;
+        color: #ff8fab;
+      }
+
+      /* Click zones */
+      .click-zone {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      .click-left {
+        left: 0;
+      }
+      .click-right {
+        right: 0;
+      }
+
+      /* Page dots */
+      .page-dots {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 100;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 105, 180, 0.3);
+        transition: all 0.3s;
+      }
+
+      .dot.active {
+        background: #ff6b9d;
+        transform: scale(1.3);
+      }
+
+      /* Nav hint */
+      .nav-hint {
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: #ff6b9d;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        z-index: 100;
+        transition: opacity 0.3s;
+      }
+
+      @media (max-width: 380px) {
+        .book {
+          width: 280px;
+          height: 400px;
+        }
+        .cover-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="page-dots" id="pageDots"></div>
+
+    <div class="book-container">
+      <div class="book" id="book">
+        <!-- Back cover -->
+        <div class="back-cover">
+          <div class="back-cover-heart">💕</div>
+          <div class="back-cover-text">The End</div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page" id="page5" style="z-index: 1">
+          <div class="page-side page-front">
+            <div class="image-placeholder"><span>Photo 9</span></div>
+          </div>
+          <div class="page-side page-back">
+            <div class="image-placeholder"><span>Photo 10</span></div>
+          </div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page" id="page4" style="z-index: 2">
+          <div class="page-side page-front">
+            <div class="image-placeholder"><span>Photo 7</span></div>
+          </div>
+          <div class="page-side page-back">
+            <div class="image-placeholder"><span>Photo 8</span></div>
+          </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page" id="page3" style="z-index: 3">
+          <div class="page-side page-front">
+            <div class="image-placeholder"><span>Photo 5</span></div>
+          </div>
+          <div class="page-side page-back">
+            <div class="image-placeholder"><span>Photo 6</span></div>
+          </div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page" id="page2" style="z-index: 4">
+          <div class="page-side page-front">
+            <div class="image-placeholder"><span>Photo 3</span></div>
+          </div>
+          <div class="page-side page-back">
+            <div class="image-placeholder"><span>Photo 4</span></div>
+          </div>
+        </div>
+
+        <!-- Page 1 (Cover) -->
+        <div class="page" id="page1" style="z-index: 5">
+          <div class="page-side page-front cover-front">
+            <div class="cover-heart">💝</div>
+            <h1 class="cover-title">For You,<br />With Love</h1>
+            <p class="cover-subtitle">Tap to open ✨</p>
+          </div>
+          <div class="page-side page-back">
+            <div class="image-placeholder"><span>Photo 1</span></div>
+          </div>
+        </div>
+
+        <!-- Click zones (on top of everything) -->
+        <div class="click-zone click-left" id="clickLeft"></div>
+        <div class="click-zone click-right" id="clickRight"></div>
+      </div>
+    </div>
+
+    <div class="nav-hint" id="navHint">👆 Tap left or right to turn pages</div>
+
+    <script>
+      // ============================================
+      // PHOTOS ARRAY - Edit this to change images!
+      // ============================================
+      const photos = [
+        { src: '', caption: 'Photo 1' },
+        { src: '', caption: 'Photo 2' },
+        { src: '', caption: 'Photo 3' },
+        { src: '', caption: 'Photo 4' },
+        { src: '', caption: 'Photo 5' },
+        { src: '', caption: 'Photo 6' },
+        { src: '', caption: 'Photo 7' },
+        { src: '', caption: 'Photo 8' },
+        { src: '', caption: 'Photo 9' },
+        { src: '', caption: 'Photo 10' },
+      ];
+
+      // Function to render photo or placeholder
+      function renderPhoto(photo) {
+        if (photo.src) {
+          return `<img src="${photo.src}" alt="${photo.caption}" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">`;
+        } else {
+          return `<div class="image-placeholder"><span>${photo.caption}</span></div>`;
+        }
+      }
+
+      // Populate pages with photos from array
+      function populatePages() {
+        // Page 1 back (Photo 1) - left side when cover flipped
+        document.querySelector('#page1 .page-back').innerHTML = renderPhoto(
+          photos[0],
+        );
+        // Page 2 front (Photo 2) - right side when cover flipped
+        document.querySelector('#page2 .page-front').innerHTML = renderPhoto(
+          photos[1],
+        );
+        // Page 2 back (Photo 3) - left side when page 2 flipped
+        document.querySelector('#page2 .page-back').innerHTML = renderPhoto(
+          photos[2],
+        );
+        // Page 3 front (Photo 4)
+        document.querySelector('#page3 .page-front').innerHTML = renderPhoto(
+          photos[3],
+        );
+        // Page 3 back (Photo 5)
+        document.querySelector('#page3 .page-back').innerHTML = renderPhoto(
+          photos[4],
+        );
+        // Page 4 front (Photo 6)
+        document.querySelector('#page4 .page-front').innerHTML = renderPhoto(
+          photos[5],
+        );
+        // Page 4 back (Photo 7)
+        document.querySelector('#page4 .page-back').innerHTML = renderPhoto(
+          photos[6],
+        );
+        // Page 5 front (Photo 8)
+        document.querySelector('#page5 .page-front').innerHTML = renderPhoto(
+          photos[7],
+        );
+        // Page 5 back (Photo 9)
+        document.querySelector('#page5 .page-back').innerHTML = renderPhoto(
+          photos[8],
+        );
+        // Photo 10 would be on back cover if needed
+      }
+
+      // Initialize photos
+      populatePages();
+
+      // Floating hearts
+      const heartsBg = document.getElementById('heartsBg');
+      const hearts = ['💕', '💖', '💗', '💓', '💝', '💘', '❤️'];
+      for (let i = 0; i < 15; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        h.style.left = Math.random() * 100 + '%';
+        h.style.animationDelay = Math.random() * 15 + 's';
+        h.style.animationDuration = 12 + Math.random() * 8 + 's';
+        heartsBg.appendChild(h);
+      }
+
+      // Get all pages in order (cover first)
+      const pages = [
+        document.getElementById('page1'),
+        document.getElementById('page2'),
+        document.getElementById('page3'),
+        document.getElementById('page4'),
+        document.getElementById('page5'),
+      ];
+      const totalPages = pages.length;
+      let currentPage = 0; // 0 = closed, 5 = fully open
+
+      // Create dots
+      const dotsContainer = document.getElementById('pageDots');
+      for (let i = 0; i <= totalPages; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dotsContainer.appendChild(dot);
+      }
+      const dots = dotsContainer.querySelectorAll('.dot');
+
+      function updateDots() {
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
+      }
+
+      // Update z-indices so flipped pages go behind
+      function updateZIndices() {
+        pages.forEach((page, i) => {
+          if (page.classList.contains('flipped')) {
+            // Flipped pages get lower z-index (go to back)
+            page.style.zIndex = i + 1;
+          } else {
+            // Unflipped pages get higher z-index (stay on top)
+            page.style.zIndex = totalPages - i + 10;
+          }
+        });
+      }
+
+      // Flip forward (right side click)
+      function flipForward() {
+        if (currentPage >= totalPages) return;
+        pages[currentPage].classList.add('flipped');
+        currentPage++;
+        updateZIndices();
+        updateDots();
+      }
+
+      // Flip backward (left side click)
+      function flipBackward() {
+        if (currentPage <= 0) return;
+        currentPage--;
+        pages[currentPage].classList.remove('flipped');
+        updateZIndices();
+        updateDots();
+      }
+
+      // Click zones
+      document
+        .getElementById('clickRight')
+        .addEventListener('click', flipForward);
+      document
+        .getElementById('clickLeft')
+        .addEventListener('click', flipBackward);
+
+      // Swipe support
+      let touchStartX = 0;
+      document.addEventListener(
+        'touchstart',
+        (e) => (touchStartX = e.touches[0].clientX),
+      );
+      document.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? flipForward() : flipBackward();
+        }
+      });
+
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') flipForward();
+        if (e.key === 'ArrowLeft') flipBackward();
+      });
+
+      // Hide hint
+      document.addEventListener(
+        'click',
+        () => {
+          const hint = document.getElementById('navHint');
+          if (hint) {
+            hint.style.opacity = '0';
+            setTimeout(() => hint.remove(), 300);
+          }
+        },
+        { once: true },
+      );
+    </script>
+  </body>
+</html>
