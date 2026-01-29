@@ -76,21 +76,57 @@
 
       .book {
         position: relative;
-        width: 320px;
-        height: 450px;
+        width: 1000px;
+        height: 700px;
         transform-style: preserve-3d;
+        display: flex;
       }
 
-      /* Book spine */
-      .book::before {
-        content: '';
-        position: absolute;
-        left: -6px;
-        top: 0;
-        width: 6px;
+      .left-page-container {
+        position: relative;
+        width: 500px;
         height: 100%;
-        background: linear-gradient(90deg, #d88aa0, #e8a0b8, #d88aa0);
-        border-radius: 2px 0 0 2px;
+        cursor: pointer;
+        border-radius: 12px 0 0 12px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #fffafc 0%, #fff0f5 100%);
+        border: 1px solid rgba(255, 182, 213, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -4px 0 15px rgba(255, 105, 180, 0.1);
+      }
+
+      .left-page-container::before {
+        content: '◀';
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 107, 157, 0.5);
+        font-size: 1.5rem;
+        pointer-events: none;
+        transition: color 0.3s;
+      }
+
+      .left-page-container:hover::before {
+        color: rgba(255, 107, 157, 0.8);
+      }
+
+      .left-page-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .right-page-container {
+        position: relative;
+        width: 500px;
+        height: 100%;
+        perspective: 1500px;
       }
 
       /* Back cover (always visible at bottom) */
@@ -135,6 +171,7 @@
 
       .page.flipped {
         transform: rotateY(-180deg);
+        pointer-events: none;
       }
 
       .page-side {
@@ -225,21 +262,25 @@
         color: #ff8fab;
       }
 
-      /* Click zones */
-      .click-zone {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: 50%;
+      /* Right page container cursor */
+      .right-page-container {
         cursor: pointer;
-        z-index: 100;
       }
 
-      .click-left {
-        left: 0;
+      .right-page-container::before {
+        content: '▶';
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 107, 157, 0.5);
+        font-size: 1.2rem;
+        z-index: 1;
+        transition: color 0.3s;
       }
-      .click-right {
-        right: 0;
+
+      .right-page-container:hover::before {
+        color: rgba(255, 107, 157, 0.8);
       }
 
       /* Page dots */
@@ -282,13 +323,55 @@
         transition: opacity 0.3s;
       }
 
-      @media (max-width: 380px) {
+      /* Tablet */
+      @media (max-width: 1050px) {
         .book {
-          width: 280px;
-          height: 400px;
+          width: 700px;
+          height: 500px;
+        }
+        .left-page-container,
+        .right-page-container {
+          width: 350px;
+        }
+      }
+
+      /* Mobile - show pages full width */
+      @media (max-width: 750px) {
+        .book {
+          width: 90vw;
+          height: 75vh;
+          max-width: 400px;
+          max-height: 600px;
+        }
+        .left-page-container,
+        .right-page-container {
+          width: 50%;
         }
         .cover-title {
           font-size: 2rem;
+        }
+        .cover-heart {
+          font-size: 2.5rem;
+        }
+        .cover-subtitle {
+          font-size: 0.8rem;
+        }
+        .back-cover-heart {
+          font-size: 2rem;
+        }
+        .back-cover-text {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* Small phones */
+      @media (max-width: 400px) {
+        .book {
+          width: 95vw;
+          height: 70vh;
+        }
+        .cover-title {
+          font-size: 1.6rem;
         }
       }
     </style>
@@ -299,71 +382,79 @@
 
     <div class="book-container">
       <div class="book" id="book">
-        <!-- Back cover -->
-        <div class="back-cover">
-          <div class="back-cover-heart">💕</div>
-          <div class="back-cover-text">The End</div>
-        </div>
-
-        <!-- Page 5 -->
-        <div class="page" id="page5" style="z-index: 1">
-          <div class="page-side page-front">
-            <div class="image-placeholder"><span>Photo 9</span></div>
-          </div>
-          <div class="page-side page-back">
-            <div class="image-placeholder"><span>Photo 10</span></div>
+        <!-- Left page (shows previous page content, click to go back) -->
+        <div class="left-page-container" id="leftPage">
+          <div class="left-page-content" id="leftPageContent">
+            <!-- Will be populated by JS -->
           </div>
         </div>
 
-        <!-- Page 4 -->
-        <div class="page" id="page4" style="z-index: 2">
-          <div class="page-side page-front">
-            <div class="image-placeholder"><span>Photo 7</span></div>
+        <!-- Right side with flip pages -->
+        <div class="right-page-container">
+          <!-- Back cover -->
+          <div class="back-cover">
+            <div class="back-cover-heart">💕</div>
+            <div class="back-cover-text">The End</div>
           </div>
-          <div class="page-side page-back">
-            <div class="image-placeholder"><span>Photo 8</span></div>
+
+          <!-- Page 5 -->
+          <div class="page" id="page5" style="z-index: 1">
+            <div class="page-side page-front">
+              <div class="image-placeholder"><span>Photo 9</span></div>
+            </div>
+            <div class="page-side page-back">
+              <div class="image-placeholder"><span>Photo 10</span></div>
+            </div>
+          </div>
+
+          <!-- Page 4 -->
+          <div class="page" id="page4" style="z-index: 2">
+            <div class="page-side page-front">
+              <div class="image-placeholder"><span>Photo 7</span></div>
+            </div>
+            <div class="page-side page-back">
+              <div class="image-placeholder"><span>Photo 8</span></div>
+            </div>
+          </div>
+
+          <!-- Page 3 -->
+          <div class="page" id="page3" style="z-index: 3">
+            <div class="page-side page-front">
+              <div class="image-placeholder"><span>Photo 5</span></div>
+            </div>
+            <div class="page-side page-back">
+              <div class="image-placeholder"><span>Photo 6</span></div>
+            </div>
+          </div>
+
+          <!-- Page 2 -->
+          <div class="page" id="page2" style="z-index: 4">
+            <div class="page-side page-front">
+              <div class="image-placeholder"><span>Photo 3</span></div>
+            </div>
+            <div class="page-side page-back">
+              <div class="image-placeholder"><span>Photo 4</span></div>
+            </div>
+          </div>
+
+          <!-- Page 1 (Cover) -->
+          <div class="page" id="page1" style="z-index: 5">
+            <div class="page-side page-front cover-front">
+              <div class="cover-heart">💝</div>
+              <h1 class="cover-title">For You,<br />With Love</h1>
+              <p class="cover-subtitle">Tap to open ✨</p>
+            </div>
+            <div class="page-side page-back">
+              <div class="image-placeholder"><span>Photo 1</span></div>
+            </div>
           </div>
         </div>
-
-        <!-- Page 3 -->
-        <div class="page" id="page3" style="z-index: 3">
-          <div class="page-side page-front">
-            <div class="image-placeholder"><span>Photo 5</span></div>
-          </div>
-          <div class="page-side page-back">
-            <div class="image-placeholder"><span>Photo 6</span></div>
-          </div>
-        </div>
-
-        <!-- Page 2 -->
-        <div class="page" id="page2" style="z-index: 4">
-          <div class="page-side page-front">
-            <div class="image-placeholder"><span>Photo 3</span></div>
-          </div>
-          <div class="page-side page-back">
-            <div class="image-placeholder"><span>Photo 4</span></div>
-          </div>
-        </div>
-
-        <!-- Page 1 (Cover) -->
-        <div class="page" id="page1" style="z-index: 5">
-          <div class="page-side page-front cover-front">
-            <div class="cover-heart">💝</div>
-            <h1 class="cover-title">For You,<br />With Love</h1>
-            <p class="cover-subtitle">Tap to open ✨</p>
-          </div>
-          <div class="page-side page-back">
-            <div class="image-placeholder"><span>Photo 1</span></div>
-          </div>
-        </div>
-
-        <!-- Click zones (on top of everything) -->
-        <div class="click-zone click-left" id="clickLeft"></div>
-        <div class="click-zone click-right" id="clickRight"></div>
       </div>
     </div>
 
-    <div class="nav-hint" id="navHint">👆 Tap left or right to turn pages</div>
+    <div class="nav-hint" id="navHint">
+      👆 Tap left page to go back, right page to go forward
+    </div>
 
     <script>
       // ============================================
@@ -459,6 +550,12 @@
       const totalPages = pages.length;
       let currentPage = 0; // 0 = closed, 5 = fully open
 
+      const leftPage = document.getElementById('leftPage');
+      const leftPageContent = document.getElementById('leftPageContent');
+      const rightPageContainer = document.querySelector(
+        '.right-page-container',
+      );
+
       // Create dots
       const dotsContainer = document.getElementById('pageDots');
       for (let i = 0; i <= totalPages; i++) {
@@ -470,6 +567,40 @@
 
       function updateDots() {
         dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
+      }
+
+      // Update left page content based on current state
+      function updateLeftPage() {
+        const book = document.getElementById('book');
+        if (currentPage === 0) {
+          // Book is closed, hide left page entirely and center the cover
+          leftPageContent.innerHTML = '';
+          leftPage.style.cursor = 'default';
+          leftPage.style.display = 'none';
+          book.style.justifyContent = 'center';
+        } else if (currentPage === 1) {
+          // Cover is flipped, show cover design on left
+          leftPage.style.display = 'flex';
+          book.style.justifyContent = 'flex-start';
+          leftPageContent.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ff6b9d;">
+              <div style="font-size: 2.5rem; margin-bottom: 10px;">💝</div>
+              <div style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; text-align: center;">For You,<br/>With Love</div>
+            </div>
+          `;
+          leftPage.style.cursor = 'pointer';
+        } else {
+          // Show the photo from the flipped page's back side
+          leftPage.style.display = 'flex';
+          const photoIndex = (currentPage - 1) * 2 - 1; // Maps to correct photo
+          if (photoIndex >= 0 && photoIndex < photos.length) {
+            leftPageContent.innerHTML = renderPhoto(photos[photoIndex]);
+          } else {
+            leftPageContent.innerHTML =
+              '<div class="image-placeholder"><span>Photo</span></div>';
+          }
+          leftPage.style.cursor = 'pointer';
+        }
       }
 
       // Update z-indices so flipped pages go behind
@@ -485,31 +616,32 @@
         });
       }
 
-      // Flip forward (right side click)
+      // Flip forward (right page click)
       function flipForward() {
         if (currentPage >= totalPages) return;
         pages[currentPage].classList.add('flipped');
         currentPage++;
         updateZIndices();
         updateDots();
+        updateLeftPage();
       }
 
-      // Flip backward (left side click)
+      // Flip backward (left page click)
       function flipBackward() {
         if (currentPage <= 0) return;
         currentPage--;
         pages[currentPage].classList.remove('flipped');
         updateZIndices();
         updateDots();
+        updateLeftPage();
       }
 
-      // Click zones
-      document
-        .getElementById('clickRight')
-        .addEventListener('click', flipForward);
-      document
-        .getElementById('clickLeft')
-        .addEventListener('click', flipBackward);
+      // Click handlers
+      leftPage.addEventListener('click', flipBackward);
+      rightPageContainer.addEventListener('click', flipForward);
+
+      // Initialize left page
+      updateLeftPage();
 
       // Swipe support
       let touchStartX = 0;
