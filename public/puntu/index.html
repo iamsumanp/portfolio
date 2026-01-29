@@ -346,11 +346,12 @@
         }
       }
 
-      /* Mobile book - single page view (mobile only) */
+      /* Mobile book - realistic page flip */
       .mobile-book {
         display: none;
         position: relative;
         z-index: 1;
+        perspective: 2500px;
       }
 
       .mobile-page {
@@ -359,27 +360,96 @@
         max-width: 400px;
         height: 75vh;
         max-height: 600px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 30px rgba(255, 105, 180, 0.3);
+        transform-style: preserve-3d;
       }
 
-      .mobile-page-content {
+      /* The flipping page container */
+      .mobile-flip-page {
+        position: absolute;
         width: 100%;
         height: 100%;
+        transform-style: preserve-3d;
+        transform-origin: left center;
+        transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        cursor: pointer;
+      }
+
+      .mobile-flip-page.flipping {
+        transform: rotateY(-180deg);
+      }
+
+      /* Front and back of the page */
+      .mobile-page-front,
+      .mobile-page-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: 12px;
+        overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow:
+          0 8px 30px rgba(255, 105, 180, 0.3),
+          inset 0 0 30px rgba(255, 255, 255, 0.3);
+      }
+
+      .mobile-page-front {
         background: linear-gradient(180deg, #fffafc 0%, #fff0f5 100%);
+        z-index: 2;
+      }
+
+      .mobile-page-back {
+        background: linear-gradient(180deg, #fff0f5 0%, #ffe8f0 100%);
+        transform: rotateY(180deg);
+      }
+
+      /* Page edge shadow during flip */
+      .mobile-flip-page::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.15) 0%,
+          rgba(0, 0, 0, 0) 10%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
         border-radius: 12px;
       }
 
+      .mobile-flip-page.flipping::after {
+        opacity: 1;
+      }
+
+      /* Static background page */
+      .mobile-static-page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, #fffafc 0%, #fff0f5 100%);
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 8px 30px rgba(255, 105, 180, 0.3);
+      }
+
+      /* Navigation areas */
       .mobile-nav-left,
       .mobile-nav-right {
         position: absolute;
         top: 0;
         height: 100%;
         width: 50%;
+        z-index: 10;
       }
 
       .mobile-nav-left {
@@ -490,10 +560,19 @@
       👆 Tap left page to go back, right page to go forward
     </div>
 
-    <!-- Mobile single page view (visible only on mobile) -->
+    <!-- Mobile book - realistic page flip -->
     <div class="mobile-book" id="mobileBook">
       <div class="mobile-page" id="mobilePage">
-        <div class="mobile-page-content" id="mobilePageContent"></div>
+        <!-- Static page underneath (shows next page content) -->
+        <div class="mobile-static-page" id="mobileStaticPage"></div>
+
+        <!-- Flipping page with front and back -->
+        <div class="mobile-flip-page" id="mobileFlipPage">
+          <div class="mobile-page-front" id="mobilePageFront"></div>
+          <div class="mobile-page-back" id="mobilePageBack"></div>
+        </div>
+
+        <!-- Navigation areas -->
         <div class="mobile-nav-left" id="mobileNavLeft"></div>
         <div class="mobile-nav-right" id="mobileNavRight"></div>
       </div>
@@ -771,9 +850,12 @@
       );
 
       // ============================================
-      // MOBILE SINGLE PAGE VIEW (one page at a time)
+      // MOBILE REALISTIC PAGE FLIP
       // ============================================
-      const mobilePageContent = document.getElementById('mobilePageContent');
+      const mobileStaticPage = document.getElementById('mobileStaticPage');
+      const mobileFlipPage = document.getElementById('mobileFlipPage');
+      const mobilePageFront = document.getElementById('mobilePageFront');
+      const mobilePageBack = document.getElementById('mobilePageBack');
       const mobileNavLeft = document.getElementById('mobileNavLeft');
       const mobileNavRight = document.getElementById('mobileNavRight');
       const mobileBook = document.getElementById('mobileBook');
@@ -781,20 +863,22 @@
       // Mobile: cover → photo1 → photo2 → ... → photo10 → backCover
       let mobileCurrentPage = 0;
       const mobileTotalPages = photos.length + 2; // cover + photos + back cover
+      let mobileAnimating = false;
 
-      function renderMobilePage() {
-        if (mobileCurrentPage === 0) {
+      // Get content for a specific page index
+      function getMobilePageContent(pageIndex) {
+        if (pageIndex === 0) {
           // Front cover
-          mobilePageContent.innerHTML = `
+          return `
             <div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6b9d 0%,#ff8fab 50%,#ffb3c6 100%);border-radius:12px;color:white;">
               <div class="cover-heart">💝</div>
               <h1 class="cover-title">For You,<br/>With Love</h1>
               <p class="cover-subtitle">Tap to open ✨</p>
             </div>
           `;
-        } else if (mobileCurrentPage === mobileTotalPages - 1) {
+        } else if (pageIndex === mobileTotalPages - 1) {
           // Back cover
-          mobilePageContent.innerHTML = `
+          return `
             <div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ffb3c6 0%,#ff8fab 50%,#ff6b9d 100%);border-radius:12px;color:white;">
               <div style="font-size:2.5rem;margin-bottom:15px;">💕</div>
               <div style="font-family:'Dancing Script',cursive;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,0.2);">The End</div>
@@ -803,23 +887,85 @@
           `;
         } else {
           // Photo pages
-          const photoIndex = mobileCurrentPage - 1;
+          const photoIndex = pageIndex - 1;
           if (photoIndex >= 0 && photoIndex < photos.length) {
-            mobilePageContent.innerHTML = renderPhoto(photos[photoIndex]);
+            return renderPhoto(photos[photoIndex]);
           }
+          return '<div class="image-placeholder"><span>Photo</span></div>';
         }
       }
 
-      function mobileFlipForward() {
-        if (mobileCurrentPage >= mobileTotalPages - 1) return;
-        mobileCurrentPage++;
-        renderMobilePage();
+      // Initialize the mobile view
+      function initMobileView() {
+        mobilePageFront.innerHTML = getMobilePageContent(mobileCurrentPage);
+        mobileFlipPage.classList.remove('flipping');
       }
 
+      // Flip forward (to next page)
+      function mobileFlipForward() {
+        if (mobileCurrentPage >= mobileTotalPages - 1 || mobileAnimating)
+          return;
+        mobileAnimating = true;
+
+        // Set up: front shows current, back shows next, static shows next
+        const nextPage = mobileCurrentPage + 1;
+        mobilePageFront.innerHTML = getMobilePageContent(mobileCurrentPage);
+        mobilePageBack.innerHTML = getMobilePageContent(nextPage);
+        mobileStaticPage.innerHTML = getMobilePageContent(nextPage);
+
+        // Start flip animation
+        mobileFlipPage.classList.add('flipping');
+
+        // After animation completes
+        setTimeout(() => {
+          mobileCurrentPage = nextPage;
+
+          // Instantly reset (no animation) - update content and snap back
+          mobileFlipPage.style.transition = 'none';
+          mobileFlipPage.classList.remove('flipping');
+          mobilePageFront.innerHTML = getMobilePageContent(mobileCurrentPage);
+          mobileStaticPage.innerHTML = '';
+
+          // Force reflow to apply instant change
+          mobileFlipPage.offsetHeight;
+
+          // Restore transition for next flip
+          mobileFlipPage.style.transition =
+            'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+          mobileAnimating = false;
+        }, 800);
+      }
+
+      // Flip backward (to previous page)
       function mobileFlipBackward() {
-        if (mobileCurrentPage <= 0) return;
-        mobileCurrentPage--;
-        renderMobilePage();
+        if (mobileCurrentPage <= 0 || mobileAnimating) return;
+        mobileAnimating = true;
+
+        const prevPage = mobileCurrentPage - 1;
+
+        // Set up: position page as already flipped, then animate back
+        mobilePageFront.innerHTML = getMobilePageContent(prevPage);
+        mobilePageBack.innerHTML = getMobilePageContent(mobileCurrentPage);
+        mobileStaticPage.innerHTML = getMobilePageContent(mobileCurrentPage);
+
+        // Start already flipped
+        mobileFlipPage.style.transition = 'none';
+        mobileFlipPage.classList.add('flipping');
+
+        // Force reflow
+        mobileFlipPage.offsetHeight;
+
+        // Animate back
+        mobileFlipPage.style.transition =
+          'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+        mobileFlipPage.classList.remove('flipping');
+
+        // After animation completes
+        setTimeout(() => {
+          mobileCurrentPage = prevPage;
+          mobilePageFront.innerHTML = getMobilePageContent(mobileCurrentPage);
+          mobileAnimating = false;
+        }, 800);
       }
 
       // Mobile tap handlers
@@ -839,7 +985,7 @@
       });
 
       // Initialize mobile view
-      renderMobilePage();
+      initMobileView();
     </script>
   </body>
 </html>
