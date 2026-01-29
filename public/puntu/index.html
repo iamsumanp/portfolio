@@ -392,9 +392,15 @@
         <!-- Right side with flip pages -->
         <div class="right-page-container">
           <!-- Back cover -->
-          <div class="back-cover">
+          <div class="back-cover" id="backCover">
             <div class="back-cover-heart">💕</div>
             <div class="back-cover-text">The End</div>
+            <p
+              class="cover-subtitle"
+              style="margin-top: 15px; color: rgba(255, 255, 255, 0.9)"
+            >
+              Tap to close ✨
+            </p>
           </div>
 
           <!-- Page 5 -->
@@ -549,6 +555,7 @@
       ];
       const totalPages = pages.length;
       let currentPage = 0; // 0 = closed, 5 = fully open
+      let isClosedBack = false; // true when book is closed showing back cover
 
       const leftPage = document.getElementById('leftPage');
       const leftPageContent = document.getElementById('leftPageContent');
@@ -572,15 +579,26 @@
       // Update left page content based on current state
       function updateLeftPage() {
         const book = document.getElementById('book');
-        if (currentPage === 0) {
+        const rightContainer = document.querySelector('.right-page-container');
+
+        if (isClosedBack) {
+          // Book is closed showing back cover only
+          leftPageContent.innerHTML = '';
+          leftPage.style.cursor = 'default';
+          leftPage.style.display = 'none';
+          rightContainer.style.display = 'block';
+          book.style.justifyContent = 'center';
+        } else if (currentPage === 0) {
           // Book is closed, hide left page entirely and center the cover
           leftPageContent.innerHTML = '';
           leftPage.style.cursor = 'default';
           leftPage.style.display = 'none';
+          rightContainer.style.display = 'block';
           book.style.justifyContent = 'center';
         } else if (currentPage === 1) {
           // Cover is flipped, show cover design on left
           leftPage.style.display = 'flex';
+          rightContainer.style.display = 'block';
           book.style.justifyContent = 'flex-start';
           leftPageContent.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ff6b9d;">
@@ -592,6 +610,7 @@
         } else {
           // Show the photo from the flipped page's back side
           leftPage.style.display = 'flex';
+          rightContainer.style.display = 'block';
           const photoIndex = (currentPage - 1) * 2 - 1; // Maps to correct photo
           if (photoIndex >= 0 && photoIndex < photos.length) {
             leftPageContent.innerHTML = renderPhoto(photos[photoIndex]);
@@ -639,6 +658,45 @@
       // Click handlers
       leftPage.addEventListener('click', flipBackward);
       rightPageContainer.addEventListener('click', flipForward);
+
+      // Back cover close handler
+      const backCover = document.getElementById('backCover');
+
+      // Close book showing back cover (like closing from the end)
+      function closeBookBack() {
+        if (currentPage !== totalPages) return;
+        isClosedBack = true;
+        // Hide all pages and left page, show only back cover
+        pages.forEach((page) => (page.style.display = 'none'));
+        // Update back cover text
+        backCover.querySelector('.cover-subtitle').textContent =
+          'Tap to open ✨';
+        updateLeftPage();
+        updateDots();
+      }
+
+      // Open book from back cover
+      function openBookFromBack() {
+        if (!isClosedBack) return;
+        isClosedBack = false;
+        // Show all pages again
+        pages.forEach((page) => (page.style.display = 'block'));
+        // Update back cover text
+        backCover.querySelector('.cover-subtitle').textContent =
+          'Tap to close ✨';
+        updateLeftPage();
+        updateDots();
+      }
+
+      // Add click handler to back cover
+      backCover.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isClosedBack) {
+          openBookFromBack(); // Reopen if closed
+        } else if (currentPage === totalPages) {
+          closeBookBack(); // Close the book
+        }
+      });
 
       // Initialize left page
       updateLeftPage();
