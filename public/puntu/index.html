@@ -335,35 +335,6 @@
         }
       }
 
-      /* Mobile - show pages full width */
-      @media (max-width: 750px) {
-        .book {
-          width: 90vw;
-          height: 75vh;
-          max-width: 400px;
-          max-height: 600px;
-        }
-        .left-page-container,
-        .right-page-container {
-          width: 50%;
-        }
-        .cover-title {
-          font-size: 2rem;
-        }
-        .cover-heart {
-          font-size: 2.5rem;
-        }
-        .cover-subtitle {
-          font-size: 0.8rem;
-        }
-        .back-cover-heart {
-          font-size: 2rem;
-        }
-        .back-cover-text {
-          font-size: 1.5rem;
-        }
-      }
-
       /* Small phones */
       @media (max-width: 400px) {
         .book {
@@ -372,6 +343,63 @@
         }
         .cover-title {
           font-size: 1.6rem;
+        }
+      }
+
+      /* Mobile book - single page view (mobile only) */
+      .mobile-book {
+        display: none;
+        position: relative;
+        z-index: 1;
+      }
+
+      .mobile-page {
+        position: relative;
+        width: 90vw;
+        max-width: 400px;
+        height: 75vh;
+        max-height: 600px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(255, 105, 180, 0.3);
+      }
+
+      .mobile-page-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(180deg, #fffafc 0%, #fff0f5 100%);
+        border-radius: 12px;
+      }
+
+      .mobile-nav-left,
+      .mobile-nav-right {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 50%;
+      }
+
+      .mobile-nav-left {
+        left: 0;
+      }
+
+      .mobile-nav-right {
+        right: 0;
+      }
+
+      /* On mobile: hide desktop book, show mobile book */
+      @media (max-width: 750px) {
+        .book-container {
+          display: none !important;
+        }
+        .mobile-book {
+          display: block !important;
+        }
+        .nav-hint {
+          display: none;
         }
       }
     </style>
@@ -460,6 +488,15 @@
 
     <div class="nav-hint" id="navHint">
       👆 Tap left page to go back, right page to go forward
+    </div>
+
+    <!-- Mobile single page view (visible only on mobile) -->
+    <div class="mobile-book" id="mobileBook">
+      <div class="mobile-page" id="mobilePage">
+        <div class="mobile-page-content" id="mobilePageContent"></div>
+        <div class="mobile-nav-left" id="mobileNavLeft"></div>
+        <div class="mobile-nav-right" id="mobileNavRight"></div>
+      </div>
     </div>
 
     <script>
@@ -732,6 +769,77 @@
         },
         { once: true },
       );
+
+      // ============================================
+      // MOBILE SINGLE PAGE VIEW (one page at a time)
+      // ============================================
+      const mobilePageContent = document.getElementById('mobilePageContent');
+      const mobileNavLeft = document.getElementById('mobileNavLeft');
+      const mobileNavRight = document.getElementById('mobileNavRight');
+      const mobileBook = document.getElementById('mobileBook');
+
+      // Mobile: cover → photo1 → photo2 → ... → photo10 → backCover
+      let mobileCurrentPage = 0;
+      const mobileTotalPages = photos.length + 2; // cover + photos + back cover
+
+      function renderMobilePage() {
+        if (mobileCurrentPage === 0) {
+          // Front cover
+          mobilePageContent.innerHTML = `
+            <div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6b9d 0%,#ff8fab 50%,#ffb3c6 100%);border-radius:12px;color:white;">
+              <div class="cover-heart">💝</div>
+              <h1 class="cover-title">For You,<br/>With Love</h1>
+              <p class="cover-subtitle">Tap to open ✨</p>
+            </div>
+          `;
+        } else if (mobileCurrentPage === mobileTotalPages - 1) {
+          // Back cover
+          mobilePageContent.innerHTML = `
+            <div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ffb3c6 0%,#ff8fab 50%,#ff6b9d 100%);border-radius:12px;color:white;">
+              <div style="font-size:2.5rem;margin-bottom:15px;">💕</div>
+              <div style="font-family:'Dancing Script',cursive;font-size:1.8rem;text-shadow:2px 2px 4px rgba(0,0,0,0.2);">The End</div>
+              <p class="cover-subtitle" style="margin-top:15px;color:rgba(255,255,255,0.9);">Tap left to go back ✨</p>
+            </div>
+          `;
+        } else {
+          // Photo pages
+          const photoIndex = mobileCurrentPage - 1;
+          if (photoIndex >= 0 && photoIndex < photos.length) {
+            mobilePageContent.innerHTML = renderPhoto(photos[photoIndex]);
+          }
+        }
+      }
+
+      function mobileFlipForward() {
+        if (mobileCurrentPage >= mobileTotalPages - 1) return;
+        mobileCurrentPage++;
+        renderMobilePage();
+      }
+
+      function mobileFlipBackward() {
+        if (mobileCurrentPage <= 0) return;
+        mobileCurrentPage--;
+        renderMobilePage();
+      }
+
+      // Mobile tap handlers
+      mobileNavRight.addEventListener('click', mobileFlipForward);
+      mobileNavLeft.addEventListener('click', mobileFlipBackward);
+
+      // Mobile swipe support
+      let mobileTouchStartX = 0;
+      mobileBook.addEventListener('touchstart', (e) => {
+        mobileTouchStartX = e.touches[0].clientX;
+      });
+      mobileBook.addEventListener('touchend', (e) => {
+        const diff = mobileTouchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? mobileFlipForward() : mobileFlipBackward();
+        }
+      });
+
+      // Initialize mobile view
+      renderMobilePage();
     </script>
   </body>
 </html>
